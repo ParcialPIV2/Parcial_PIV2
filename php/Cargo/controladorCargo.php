@@ -1,19 +1,19 @@
 <?php
  
-require_once 'departamento_modelo.php';
+require_once 'cargo_modelo.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $departamento = new Departamento();
-		$resultado = $departamento->editar($datos);
+        $cargo = new cargo();
+        $resultado = $cargo->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
         echo json_encode($respuesta);
         break;
     case 'nuevo':
-        $departamento = new Departamento();
-		$resultado = $departamento->nuevo($datos);
+        $cargo = new cargo();
+		$resultado = $cargo->nuevo($datos);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -26,8 +26,8 @@ switch ($_GET['accion']){
         echo json_encode($respuesta);
         break;
     case 'borrar':
-		$departamento = new Departamento();
-		$resultado = $departamento->borrar($datos['codigo']);
+		$cargo = new cargo();
+		$resultado = $cargo->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -41,18 +41,18 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $departamento = new Departamento();
-        $departamento->consultar($datos['codigo']);
+        $cargo = new cargo();
+        $cargo->consultar($datos['codigo']);
 
-        if($departamento->getDepa_codi() == null) {
+        if($cargo->getcarg_codi() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $departamento->getDepa_codi(),
-                'departamento' => $departamento->getDepa_nomb(),
-                'pais' =>$departamento->getPais_codi(),
+                'codigo' => $cargo->getcarg_codi(),
+                'cargo' => $cargo->getcarg_nomb(),
+                'municipio' =>$cargo->getempl_codi(),
                 'respuesta' =>'existe'
             );
         }
@@ -60,9 +60,9 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $departamento = new Departamento();
-        $listado = $departamento->lista();        
-        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+        $cargo = new cargo();
+        $listado = $cargo->lista();
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
 }
 ?>
