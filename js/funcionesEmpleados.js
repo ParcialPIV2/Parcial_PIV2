@@ -102,7 +102,7 @@ function empleados(){
 
     $("#contenido").on("click","button#nuevo",function(){
         $("#titulo").html("Nuevo empleados");
-        $("#nuevo-editar" ).load("./php/empleados/nuevoempleados.php"); 
+        $("#nuevo-editar" ).load("./php/empleados/nuevosEmpleados.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#empleados").removeClass("show");
