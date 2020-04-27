@@ -60,11 +60,12 @@
 					$$campo = $valor;
 				endforeach;
 				$Emple_Nomb= utf8_decode($Emple_Nomb);
+				$Emple_Nomb2= utf8_decode($Emple_Nomb2);
 				$this->query = "
 					INSERT INTO tb_empleados
 					(Emple_Codi, Emple_Nomb, Emple_Nomb2, Cargo_Nomb)
 					VALUES
-					(NULL, '$Emple_Nomb', '$Cargo_Nomb')
+					(NULL, '$Emple_Nomb', '$Emple_Nomb2', '$Cargo_Nomb')
 					";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
