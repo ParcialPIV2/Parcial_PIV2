@@ -5,7 +5,7 @@ function comuna(){
          var datos=$("#fcomuna").serialize();
          $.ajax({
             type:"get",
-            url:"./php/comuna/controladorComuna.php",
+            url:"./php/comuna/controladorEmpleados.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -16,7 +16,7 @@ function comuna(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado Comunas");
+                $("#titulo").html("Listado Empleados");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
@@ -49,7 +49,7 @@ function comuna(){
 
                     var request = $.ajax({
                         method: "get",
-                        url: "./php/comuna/controladorComuna.php",
+                        url: "./php/comuna/controladorEmpleados.php",
                         data: {codigo: codigo, accion:'borrar'},
                         dataType: "json"
                     })
@@ -84,7 +84,7 @@ function comuna(){
     });
 
     $("#contenido").on("click","button.btncerrar2",function(){
-        $("#titulo").html("Listado Comunas");
+        $("#titulo").html("Listado Empleados");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
@@ -101,36 +101,36 @@ function comuna(){
 
     $("#contenido").on("click","button#nuevo",function(){
         $("#titulo").html("Nueva Comuna");
-        $("#nuevo-editar" ).load("./php/comuna/nuevaComuna.php"); 
+        $("#nuevo-editar" ).load("./php/comuna/nuevosEmpleados.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#comuna").removeClass("show");
         $("#comuna").addClass("hide");
          $.ajax({
              type:"get",
-             url:"./php/municipio/controladorMunicipio.php",
+             url:"./php/cargo/controladorCargo.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {   
               //console.log(resultado.data)           
-              $("#muni_codi option").remove()       
-              $("#muni_codi").append("<option selecte value=''>Seleccione un municipio</option>")
+              $("#Cargo_Codi option").remove()       
+              $("#Cargo_Codi").append("<option selecte value=''>Seleccione un cargo</option>")
               $.each(resultado.data, function (index, value) { 
-                $("#muni_codi").append("<option value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+                $("#Cargo_Codi").append("<option value='" + value.Cargo_Codi + "'>" + value.Tipo_Cargo + "</option>")
               });
            });
     })
 
     $("#contenido").on("click","button#grabar",function(){
-        /*var comu_codi = $("#comu_codi").attr("value");
-        var comu_nomb = $("#comu_nomb").attr("value");
-        var muni_codi = $("#muni_codi").attr("value");
-        var datos = "comu_codi="+comu_codi+"&comu_nomb="+comu_nomb+"&muni_codi="+muni_codi;*/
+        /*var Emple_Codi = $("#Emple_Codi").attr("value");
+        var Emple_Nomb = $("#Emple_Nomb").attr("value");
+        var Cargo_Codi = $("#Cargo_Codi").attr("value");
+        var datos = "Emple_Codi="+Emple_Codi+"&Emple_Nomb="+Emple_Nomb+"&Cargo_Codi="+Cargo_Codi;*/
       
       var datos=$("#fcomuna").serialize();
        $.ajax({
             type:"get",
-            url:"./php/comuna/controladorComuna.php",
+            url:"./php/comuna/controladorEmpleados.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -141,7 +141,7 @@ function comuna(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado Comunas");
+                $("#titulo").html("Listado Empleados");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
@@ -162,15 +162,15 @@ function comuna(){
        $("#titulo").html("Editar Comuna");
        //Recupera datos del fromulario
        var codigo = $(this).data("codigo");
-       var municipio;
-        $("#nuevo-editar").load("./php/comuna/editarComuna.php");
+       var cargo;
+        $("#nuevo-editar").load("./php/comuna/editarEmpleados.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#comuna").removeClass("show");
         $("#comuna").addClass("hide");
        $.ajax({
            type:"get",
-           url:"./php/comuna/controladorComuna.php",
+           url:"./php/comuna/controladorEmpleados.php",
            data: {codigo: codigo, accion:'consultar'},
            dataType:"json"
            }).done(function( comuna ) {        
@@ -181,25 +181,26 @@ function comuna(){
                       text: 'Comuna no existe!!!!!'                         
                     })
                 } else {
-                    $("#comu_codi").val(comuna.codigo);                   
-                    $("#comu_nomb").val(comuna.comuna);
-                    municipio = comuna.municipio;
+                    $("#Emple_Codi").val(comuna.codigo);                   
+                    $("#Emple_Nomb").val(comuna.comuna);
+                    $("#Emple_Nomb2").val(comuna.comuna);
+                    cargo = comuna.cargo;
                 }
            });
 
            $.ajax({
              type:"get",
-             url:"./php/municipio/controladorMunicipio.php",
+             url:"./php/cargo/controladorCargo.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {                     
-              $("#muni_codi option").remove();
+              $("#Cargo_Codi option").remove();
               $.each(resultado.data, function (index, value) { 
                 
-                if(municipio === value.muni_codi){
-                  $("#muni_codi").append("<option selected value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+                if(cargo === value.Cargo_Codi){
+                  $("#Cargo_Codi").append("<option selected value='" + value.Cargo_Codi + "'>" + value.Tipo_Cargo + "</option>")
                 }else {
-                  $("#muni_codi").append("<option value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+                  $("#Cargo_Codi").append("<option value='" + value.Cargo_Codi + "'>" + value.Tipo_Cargo + "</option>")
                 }
               });
            });    
@@ -213,20 +214,21 @@ $(document).ready(() => {
   $("#contenido").off("click","a.borrar");
   $("#contenido").off("click","button#nuevo");
   $("#contenido").off("click","button#grabar");
-  $("#titulo").html("Listado de Comunas");
+  $("#titulo").html("Listado de Empleados");
   dt = $("#tabla").DataTable({
-        "ajax": "php/comuna/controladorComuna.php?accion=listar",
+        "ajax": "php/comuna/controladorEmpleados.php?accion=listar",
         "columns": [
-            { "data": "comu_codi"} ,
-            { "data": "comu_nomb" },
-            { "data": "muni_nomb" },
-            { "data": "comu_codi",
+            { "data": "Emple_Codi"} ,
+            { "data": "Emple_Nomb" },
+            { "data": "Emple_Nomb2" },
+            { "data": "Tipo_Cargo" },
+            { "data": "Emple_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>' 
                 }
             },
-            { "data": "comu_codi",
+            { "data": "Emple_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';

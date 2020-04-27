@@ -1,13 +1,13 @@
 <div id="nuevo-editar" class="hide">
-		<!-- div para cargar el formulario para una nueva comuna o editar una comuna -->
+		<!-- div para cargar el formulario para una nueva empleados o editar una empleados -->
 </div>
 
-<div id="comuna">
+<div id="empleados">
 <div class="box-header">
     <i class="ion ion-clipboard"></i>
      <!-- tools box -->
     <div class="pull-right box-tools">
-    	<button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" title="Nueva Comuna"><i class="fa fa-plus" aria-hidden="true"></i></button> 
+    	<button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" title="Nueva empleados"><i class="fa fa-plus" aria-hidden="true"></i></button> 
     	<button class="btn btn-info btn-sm btncerrar"  data-toggle="tooltip" title="Ocultar"><i class="fa fa-times"></i></button>
 
     </div><!-- /. tools -->
@@ -21,7 +21,8 @@
 			<tr>
 				<th>Codigo</th>
 				<th>Nombre</th>
-				<th>Municipio</th>
+				<th>Apellido</th>
+				<th>Cargo</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 			</tr>
@@ -33,5 +34,5 @@
 	</table>
 
 </div><!-- /.box-body -->  
-<script src="js/funcionesComuna.js"></script>
+<script src="js/funcionesEmpleados.js"></script>
 </div>
