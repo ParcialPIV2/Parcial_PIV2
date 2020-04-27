@@ -1,32 +1,32 @@
 <?php
     require_once("../modeloAbstractoDB.php");
-    class Comuna extends ModeloAbstractoDB {
-		private $comu_codi;
-		private $comu_nomb;
-		private $muni_codi;
+    class Clientes extends ModeloAbstractoDB {
+		private $Cliente_Codi;
+		private $Cliente_Nom;
+		private $Docu_Codi;
 		
 		function __construct() {
 			//$this->db_name = '';
 		}
 
-		public function getComu_codi(){
-			return $this->comu_codi;
+		public function getCliente_Codi(){
+			return $this->Cliente_Codi;
 		}
 
-		public function getComu_nomb(){
-			return $this->comu_nomb;
+		public function getCliente_Nom(){
+			return $this->Cliente_Nom;
 		}
 		
-		public function getMuni_codi(){
-			return $this->muni_codi;
+		public function getDocu_Codi(){
+			return $this->Docu_Codi;
 		}
 
-		public function consultar($comu_codi='') {
-			if($comu_codi !=''):
+		public function consultar($Cliente_Codi='') {
+			if($Cliente_Codi !=''):
 				$this->query = "
-				SELECT comu_codi, comu_nomb, muni_codi
-				FROM tb_comuna
-				WHERE comu_codi = '$comu_codi' order by comu_codi
+				SELECT Cliente_Codi, Cliente_Nom, Docu_Codi
+				FROM tb_cliente
+				WHERE Cliente_Codi = '$Cliente_Codi' order by Cliente_Codi
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -39,9 +39,9 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT comu_codi, comu_nomb, m.muni_nomb
-			FROM tb_comuna as c inner join tb_municipio as m
-			ON (c.muni_codi = m.muni_codi) order by comu_codi
+			SELECT Cliente_Codi, Cliente_Nom, m.Docu_Nomb
+			FROM tb_cliente as c inner join tb_municipio as m
+			ON (c.Docu_Codi = m.Docu_Codi) order by Cliente_Codi
 			";
 			
 			$this->obtener_resultados_query();
@@ -50,16 +50,16 @@
 		}
 		
 		public function nuevo($datos=array()) {
-			if(array_key_exists('comu_codi', $datos)):
+			if(array_key_exists('Cliente_Codi', $datos)):
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
-				$comu_nomb= utf8_decode($comu_nomb);
+				$Cliente_Nom= utf8_decode($Cliente_Nom);
 				$this->query = "
-					INSERT INTO tb_comuna
-					(comu_codi, comu_nomb, muni_codi)
+					INSERT INTO tb_cliente
+					(Cliente_Codi, Cliente_Nom, Docu_Codi)
 					VALUES
-					(NULL, '$comu_nomb', '$muni_codi')
+					(NULL, '$Cliente_Nom', '$Docu_Codi')
 					";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -70,21 +70,21 @@
 			foreach ($datos as $campo=>$valor):
 				$$campo = $valor;
 			endforeach;
-			$comu_nomb= utf8_decode($comu_nomb);
+			$Cliente_Nom= utf8_decode($Cliente_Nom);
 			$this->query = "
-			UPDATE tb_comuna
-			SET comu_nomb='$comu_nomb',
-			muni_codi='$muni_codi'
-			WHERE comu_codi = '$comu_codi'
+			UPDATE tb_cliente
+			SET Cliente_Nom='$Cliente_Nom',
+			Docu_Codi='$Docu_Codi'
+			WHERE Cliente_Codi = '$Cliente_Codi'
 			";
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;
 		}
 		
-		public function borrar($comu_codi='') {
+		public function borrar($Cliente_Codi='') {
 			$this->query = "
-			DELETE FROM tb_comuna
-			WHERE comu_codi = '$comu_codi'
+			DELETE FROM tb_cliente
+			WHERE Cliente_Codi = '$Cliente_Codi'
 			";
 			$resultado = $this->ejecutar_query_simple();
 

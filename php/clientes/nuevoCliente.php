@@ -1,7 +1,7 @@
 <!-- quick email widget -->
-<div id="seccion-comuna">
+<div id="seccion-cliente">
 	<div class="box-header">
-    	<i class="fa fa-building" aria-hidden="true">Gestión de Comuna</i>
+    	<i class="fa fa-building" aria-hidden="true">Gestión de Cliente</i>
         <!-- tools box -->
         <div class="pull-right box-tools">
         	<button class="btn btn-info btn-sm btncerrar2" data-toggle="tooltip" title="Cerrar"><i class="fa fa-times"></i></button>
@@ -19,30 +19,30 @@
             <div class="panel-heading">Datos</div>
             <div class="panel-body">
     
-                <form class="form-horizontal" role="form"  id="fcomuna">
+                <form class="form-horizontal" role="form"  id="fcliente">
 
 
  					<div class="form-group">
-                        <label class="control-label col-sm-2" for="comu_codi">Codigo:</label>
+                        <label class="control-label col-sm-2" for="Cliente_Codi">Codigo:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="comu_codi" name="comu_codi" placeholder="Ingrese Codigo"
+                            <input type="text" class="form-control" id="Cliente_Codi" name="Cliente_Codi" placeholder="Ingrese Codigo"
                             value = "" readonly="true"  data-validation="length alphanumeric" data-validation-length="3-12">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="comu_nomb">Nombre:</label>
+                        <label class="control-label col-sm-2" for="Cliente_Nom">Nombre del cliente:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="comu_nomb" name="comu_nomb" placeholder="Ingrese Nombre comuna"
+                            <input type="text" class="form-control" id="Cliente_Nom" name="Cliente_Nom" placeholder="Ingrese nombre del cliente"
                             value = "">
                         </div>
                     </div>
 					
 					
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="muni_codi">Municipio:</label>
+                        <label class="control-label col-sm-2" for="Docu_Codi">Documento:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="muni_codi" name="muni_codi">
+                            <select class="form-control" id="Docu_Codi" name="Docu_Codi">
                          
 							</select>	
                         </div>
@@ -50,7 +50,7 @@
 
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip" title="Grabar Comuna">Grabar Comuna</button>
+                            <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip" title="Grabar Cliente">Grabar Cliente</button>
                             <button type="button" id="cerrar" class="btn btn-success btncerrar2" data-toggle="tooltip" title="Cancelar">Cancelar</button>
                         </div>
                     </div>
