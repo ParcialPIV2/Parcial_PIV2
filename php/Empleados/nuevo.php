@@ -1,5 +1,5 @@
 <!-- quick email widget -->
-<div id="seccion-empleado">
+<div id="seccion-pais">
 	<div class="box-header">
     	<i class="fa fa-building" aria-hidden="true">Gestión de Empleados</i>
         <!-- tools box -->

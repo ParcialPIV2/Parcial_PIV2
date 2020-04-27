@@ -1,11 +1,11 @@
 var dt;
 
-function clientes(){
+function empleados(){
     $("#contenido").on("click","button#actualizar",function(){
-         var datos=$("#fclientes").serialize();
+         var datos=$("#fempleados").serialize();
          $.ajax({
             type:"get",
-            url:"./php/clientes/controladorClientes.php",
+            url:"./php/empleados/controladorEmpleados.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -16,12 +16,12 @@ function clientes(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado de clientes");
+                $("#titulo").html("Listado de empleados");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#clientes").removeClass("hide");
-                $("#clientes").addClass("show")
+                $("#empleados").removeClass("hide");
+                $("#empleados").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -49,7 +49,7 @@ function clientes(){
 
                     var request = $.ajax({
                         method: "get",
-                        url: "./php/clientes/controladorClientes.php",
+                        url: "./php/empleados/controladorEmpleados.php",
                         data: {codigo: codigo, accion:'borrar'},
                         dataType: "json"
                     })
@@ -88,8 +88,8 @@ function clientes(){
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
-        $("#clientes").removeClass("hide");
-        $("#clientes").addClass("show");
+        $("#empleados").removeClass("hide");
+        $("#empleados").addClass("show");
 
     })
 
@@ -100,23 +100,23 @@ function clientes(){
     })
 
     $("#contenido").on("click","button#nuevo",function(){
-        $("#titulo").html("Nuevo cliente");
-        $("#nuevo-editar" ).load("./php/clientes/nuevo.php"); 
+        $("#titulo").html("Nuevo empleado");
+        $("#nuevo-editar" ).load("./php/empleados/nuevo.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#clientes").removeClass("show");
-        $("#clientes").addClass("hide");
+        $("#empleados").removeClass("show");
+        $("#empleados").addClass("hide");
          $.ajax({
              type:"get",
-             url:"./php/documento/controladordocumento.php",
+             url:"./php/cargo/controladorcargo.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {   
               //console.log(resultado.data)           
-              $("#Docu_Codi option").remove()       
-              $("#Docu_Codi").append("<option selecte value=''>Seleccione un empleado</option>")
+              $("#Cargo_Codi option").remove()       
+              $("#Cargo_Codi").append("<option selecte value=''>Seleccione un empleado</option>")
               $.each(resultado.data, function (index, value) { 
-                $("#Docu_Codi").append("<option value='" + value.Docu_Codi + "'>" + value.Docu_Nomb +"</option>")
+                $("#Cargo_Codi").append("<option value='" + value.Cargo_Codi + "'>" + value.Tipo_Cargo +"</option>")
               });
            });
     })
@@ -127,11 +127,11 @@ function clientes(){
         var muni_codi = $("#muni_codi").attr("value");
         var datos = "comu_codi="+comu_codi+"&comu_nomb="+comu_nomb+"&muni_codi="+muni_codi;*/
       
-      var datos=$("#fclientes").serialize();
+      var datos=$("#fempleados").serialize();
 
       $.ajax({
             type:"get",
-            url:"./php/clientes/controladorClientes.php",
+            url:"./php/empleados/controladorEmpleados.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -146,8 +146,8 @@ function clientes(){
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#clientes").removeClass("hide");
-                $("#clientes").addClass("show")
+                $("#empleados").removeClass("hide");
+                $("#empleados").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -164,43 +164,43 @@ function clientes(){
        //Recupera datos del fromulario
        var codigo = $(this).data("codigo");
   
-        $("#nuevo-editar").load("./php/clientes/editar.php");
+        $("#nuevo-editar").load("./php/empleados/editar.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#clientes").removeClass("show");
-        $("#clientes").addClass("hide");
+        $("#empleados").removeClass("show");
+        $("#empleados").addClass("hide");
        $.ajax({
            type:"get",
-           url:"./php/clientes/controladorClientes.php", 
+           url:"./php/empleados/controladorEmpleados.php", 
            data: {codigo: codigo, accion:'consultar'},
            dataType:"json"
-           }).done(function( clientes ) {
-                if(clientes.respuesta === "no existe"){
+           }).done(function( empleados ) {
+                if(empleados.respuesta === "no existe"){
                     swal({
                       type: 'error',
                       title: 'Oops...',
                       text: 'Municipio no existe!'                         
                     })
                 } else {
-                    $("#Cliente_Codi").val(clientes.codigo);                   
-                    $("#Cliente_Nomb").val(clientes.clientes);                   
-                    cargo = clientes.cargo;
+                    $("#Emple_Codi").val(empleados.codigo);                   
+                    $("#Emple_Nomb").val(empleados.empleados);                   
+                    cargo = empleados.cargo;
                 }
            });
 
            $.ajax({
              type:"get",
-             url:"./php/documento/controladordocumento.php",
+             url:"./php/cargo/controladorcargo.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {                     
-              $("#Docu_Codi option").remove();
+              $("#Cargo_Codi option").remove();
               $.each(resultado.data, function (index, value) { 
                 
-                if(cargo === value.Docu_Nomb){
-                  $("#Docu_Codi").append("<option selected value='" + value.Docu_Codi+ value.Docu_Nomb+"</option>")
+                if(cargo === value.Tipo_Cargo){
+                  $("#Cargo_Codi").append("<option selected value='" + value.Cargo_Codi+ value.Tipo_Cargo+"</option>")
                 }else {
-                  $("#Docu_Codi").append("<option value='" + value.Docu_Codi + value.Docu_Nomb+"</option>")
+                  $("#Cargo_Codi").append("<option value='" + value.Cargo_Codi + value.Tipo_Cargo+"</option>")
                 }
               });
            });
@@ -214,21 +214,22 @@ $(document).ready(() => {
   $("#contenido").off("click","a.borrar");
   $("#contenido").off("click","button#nuevo");
   $("#contenido").off("click","button#grabar");
-  $("#titulo").html("Listado de clientes"); 
+  $("#titulo").html("Listado de empleados"); 
   dt = $("#tabla").DataTable({
-        "ajax": "php/clientes/controladorClientes.php?accion=listar",
+        "ajax": "php/empleados/controladorEmpleados.php?accion=listar",
         "columns": [
-            { "data": "Cliente_Codi"} ,
-            { "data": "Cliente_Nomb" },
-            { "data": "Cliente_Apell" },
-            { "data": "Docu_Codi" },
-            { "data": "Cliente_Codi",
+            { "data": "Emple_Codi"} ,
+            { "data": "Emple_Nomb" },
+            { "data": "Emple_Apell" },
+            { "data": "Documento" },
+            { "data": "Cargo_Codi" },
+            { "data": "Emple_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>' 
                 }
             },
-            { "data": "Cliente_Codi",
+            { "data": "Emple_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
@@ -237,5 +238,5 @@ $(document).ready(() => {
         ]
   });
 
-  clientes();
+  empleados();
 });
