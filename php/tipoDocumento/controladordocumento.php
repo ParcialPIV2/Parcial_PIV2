@@ -1,19 +1,19 @@
 <?php
  
-require_once 'Modelocliente.php';
+require_once 'modelodocumento.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $clientes= new Clientes();
-		$resultado = $clientes->editar($datos);
+        $tipodocumento = new Tipodocumento();
+		$resultado = $tipodocumento->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
         echo json_encode($respuesta);
         break;
     case 'nuevo':
-        $clientes= new Clientes();
-		$resultado = $clientes->nuevo($datos);
+        $tipodocumento = new Tipodocumento();
+		$resultado = $tipodocumento->nuevo($datos);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -26,8 +26,8 @@ switch ($_GET['accion']){
         echo json_encode($respuesta);
         break;
     case 'borrar':
-		$clientes= new Clientes();
-		$resultado = $clientes->borrar($datos['codigo']);
+		$tipodocumento = new Tipodocumento();
+		$resultado = $tipodocumento->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -41,19 +41,17 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $clientes= new Clientes();
-        $clientes->consultar($datos['codigo']);
+        $tipodocumento = new Tipodocumento();
+        $tipodocumento->consultar($datos['codigo']);
 
-        if($clientes->getclientes_codi() == null) {
+        if($tipodocumento->gettipodocumento_CODI() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $clientes->getCLIENTES_CODI(),
-                'clientes' => $clientes->getCLIENTES_NOMB(),
-                'apellido' => $clientes->getCLIENTES_APELL(),
-                'documentocodigo' =>$clientes->getDOCU_CODI(),
+                'codigo' => $tipodocumento->getDOCU_CODI(),
+                'tipodocumento' => $tipodocumento->getDOCU_NOMB(),
                 'respuesta' =>'existe'
             );
         }
@@ -61,8 +59,8 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $clientes= new Clientes();
-        $listado = $clientes->lista();        
+        $tipodocumento = new Tipodocumento();
+        $listado = $tipodocumento->lista();        
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
 }

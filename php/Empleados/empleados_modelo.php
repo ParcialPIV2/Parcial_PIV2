@@ -5,7 +5,9 @@
 		public $Emple_Codi;
 		public $Emple_Nomb;
 		public $Emple_Apell;
+		public $Documento;
 		public $Cargo_Codi;
+
 		
 		function __construct() {
 			
@@ -23,6 +25,10 @@
 			return $this->Emple_Apell;
 		}
 		
+		public function getDOCUMENTO(){
+			return $this->Documento;
+		}
+		
 		public function getCARGO_CODI(){
 			return $this->Cargo_Codi;
 		}
@@ -30,7 +36,7 @@
 		public function consultar($Emple_Codi='') {
 			if($Emple_Codi != ''):
 				$this->query = "
-				SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Cargo_Codi
+				SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Documento,Emple_Codi
 				FROM tb_empleados
 				WHERE Emple_Codi = '$Emple_Codi'
 				";
@@ -45,34 +51,33 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Cargo_Codi FROM tb_empleados ORDER BY Emple_Codi
+			SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Documento,p.Cargo_Codi
+			FROM tb_empleados as m inner join tb_cargo as p
+			ON (m.Cargo_Codi = p.Cargo_Codi) ORDER BY m.Emple_Nomb
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
 
-		public function listaPais() {
+		public function listaempleados() {
 			$this->query = "
-			SELECT *
-			FROM tb_empleados order by Emple_Nomb
+			SELECT Emple_Codi, Emple_Nomb,Emple_Apell,Documento
+			FROM tb_empleados as d order by Emple_nom
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
-		
 
 		public function nuevo($datos=array()) {
 			if(array_key_exists('Emple_Codi', $datos)):
-				//$datos = utf8_string_array_encode($datos);
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
-				$Emple_Codi= utf8_decode($Emple_Nomb);
 				$this->query = "
 				INSERT INTO tb_empleados
-				(Emple_Codi, Emple_Nomb,Emple_Apell, Cargo_Codi)
+				(Emple_Codi, Emple_Nomb, Cargo_Codi,Emple_Apell,Documento)
 				VALUES
-				('$Emple_Codi','$Emple_Nomb', '$Cargo_Codi')
+				('$Emple_Codi','$Emple_Nomb', '$Cargo_Codi','$Emple_Apell','$Documento')
 				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -83,11 +88,9 @@
 			foreach ($datos as $campo=>$valor):
 				$$campo = $valor;
 			endforeach;
-			$Emple_Codi= utf8_decode($Emple_Codi);
 			$this->query = "
 			UPDATE tb_empleados
-			SET Emple_Nomb='$Emple_Nomb',
-			SET Emple_Apell='$Emple_Apell',
+			SET Emple_Nomb='$Emple_Nomb', Emple_Apell='$Emple_Apell', Documento='$Documento'
             Cargo_Codi='$Cargo_Codi'
 			WHERE Emple_Codi = '$Emple_Codi'
 			";

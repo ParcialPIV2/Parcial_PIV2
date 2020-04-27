@@ -1,19 +1,19 @@
 <?php
  
-require_once 'Modelocliente.php';
+require_once 'modelocargo.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $clientes= new Clientes();
-		$resultado = $clientes->editar($datos);
+        $cargo = new Cargo();
+		$resultado = $cargo->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
         echo json_encode($respuesta);
         break;
     case 'nuevo':
-        $clientes= new Clientes();
-		$resultado = $clientes->nuevo($datos);
+        $cargo = new Cargo();
+		$resultado = $cargo->nuevo($datos);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -26,8 +26,8 @@ switch ($_GET['accion']){
         echo json_encode($respuesta);
         break;
     case 'borrar':
-		$clientes= new Clientes();
-		$resultado = $clientes->borrar($datos['codigo']);
+		$cargo = new Cargo();
+		$resultado = $cargo->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -41,19 +41,17 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $clientes= new Clientes();
-        $clientes->consultar($datos['codigo']);
+        $cargo = new Cargo();
+        $cargo->consultar($datos['codigo']);
 
-        if($clientes->getclientes_codi() == null) {
+        if($cargo->getCARGO_CODI() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $clientes->getCLIENTES_CODI(),
-                'clientes' => $clientes->getCLIENTES_NOMB(),
-                'apellido' => $clientes->getCLIENTES_APELL(),
-                'documentocodigo' =>$clientes->getDOCU_CODI(),
+                'codigo' => $cargo->getCARGO_CODI(),
+                'cargo' => $cargo->getTIPO_CARGO(),
                 'respuesta' =>'existe'
             );
         }
@@ -61,8 +59,8 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $clientes= new Clientes();
-        $listado = $clientes->lista();        
+        $cargo = new Cargo();
+        $listado = $cargo->lista();        
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
 }

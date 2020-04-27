@@ -1,12 +1,11 @@
-
 var dt;
 
-function empleados(){
+function clientes(){
     $("#contenido").on("click","button#actualizar",function(){
-         var datos=$("#fempleados").serialize();
+         var datos=$("#fclientes").serialize();
          $.ajax({
             type:"get",
-            url:"./php/empleados/controladorEmpleados.php",
+            url:"./php/clientes/controladorClientes.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -17,12 +16,12 @@ function empleados(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado empleadoses");
+                $("#titulo").html("Listado de clientes");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#empleados").removeClass("hide");
-                $("#empleados").addClass("show")
+                $("#clientes").removeClass("hide");
+                $("#clientes").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -39,7 +38,7 @@ function empleados(){
 
         swal({
               title: '¿Está seguro?',
-              text: "¿Realmente desea borrar el empleados con codigo : " + codigo + " ?",
+              text: "¿Realmente desea borrar el municipio con codigo : " + codigo + " ?",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -50,7 +49,7 @@ function empleados(){
 
                     var request = $.ajax({
                         method: "get",
-                        url: "./php/empleados/controladorEmpleados.php",
+                        url: "./php/clientes/controladorClientes.php",
                         data: {codigo: codigo, accion:'borrar'},
                         dataType: "json"
                     })
@@ -59,7 +58,7 @@ function empleados(){
                         if(resultado.respuesta == 'correcto'){
                             swal(
                                 'Borrado!',
-                                'El empleados con codigo : ' + codigo + ' fue borrado',
+                                'El municipio con codigo : ' + codigo + ' fue borrado',
                                 'success'
                             )     
                             dt.ajax.reload();                            
@@ -89,8 +88,8 @@ function empleados(){
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
-        $("#empleados").removeClass("hide");
-        $("#empleados").addClass("show");
+        $("#clientes").removeClass("hide");
+        $("#clientes").addClass("show");
 
     })
 
@@ -101,23 +100,23 @@ function empleados(){
     })
 
     $("#contenido").on("click","button#nuevo",function(){
-        $("#titulo").html("Nuevo empleados");
-        $("#nuevo-editar" ).load("./php/empleados/nuevosEmpleados.php"); 
+        $("#titulo").html("Nuevo cliente");
+        $("#nuevo-editar" ).load("./php/clientes/nuevo.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#empleados").removeClass("show");
-        $("#empleados").addClass("hide");
+        $("#clientes").removeClass("show");
+        $("#clientes").addClass("hide");
          $.ajax({
              type:"get",
-             url:"./php/empleados/controladorEmpleados.php",
+             url:"./php/documento/controladordocumento.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {   
               //console.log(resultado.data)           
-              $("#Emple_Codi option").remove()       
-              $("#Emple_Codi").append("<option selecte value=''>Seleccione un departamento</option>")
+              $("#Docu_Codi option").remove()       
+              $("#Docu_Codi").append("<option selecte value=''>Seleccione un empleado</option>")
               $.each(resultado.data, function (index, value) { 
-                $("#Emple_Codi").append("<option value='" + value.Emple_Codi + "'>" + value.Emple_Codi + "</option>")
+                $("#Docu_Codi").append("<option value='" + value.Docu_Codi + "'>" + value.Docu_Nomb +"</option>")
               });
            });
     })
@@ -128,11 +127,11 @@ function empleados(){
         var muni_codi = $("#muni_codi").attr("value");
         var datos = "comu_codi="+comu_codi+"&comu_nomb="+comu_nomb+"&muni_codi="+muni_codi;*/
       
-      var datos=$("#fempleados").serialize();
+      var datos=$("#fclientes").serialize();
 
       $.ajax({
             type:"get",
-            url:"./php/empleados/controladorEmpleados.php",
+            url:"./php/clientes/controladorClientes.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -143,12 +142,12 @@ function empleados(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado empleados");
+                $("#titulo").html("Listado municipios");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#empleados").removeClass("hide");
-                $("#empleados").addClass("show")
+                $("#clientes").removeClass("hide");
+                $("#clientes").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -161,33 +160,49 @@ function empleados(){
 
 
     $("#contenido").on("click","a.editar",function(){     
-       $("#titulo").html("Editar empleados");
+       $("#titulo").html("Editar Municipio");
        //Recupera datos del fromulario
        var codigo = $(this).data("codigo");
-       var departamento;
-       
-        $("#nuevo-editar").load("./php/empleados/editar.php");
+  
+        $("#nuevo-editar").load("./php/clientes/editar.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#empleados").removeClass("show");
-        $("#empleados").addClass("hide");
+        $("#clientes").removeClass("show");
+        $("#clientes").addClass("hide");
        $.ajax({
            type:"get",
-           url:"./php/empleados/controladorEmpleados.php", 
+           url:"./php/clientes/controladorClientes.php", 
            data: {codigo: codigo, accion:'consultar'},
            dataType:"json"
-           }).done(function( empleados ) {
-                if(empleados.respuesta === "no existe"){
+           }).done(function( clientes ) {
+                if(clientes.respuesta === "no existe"){
                     swal({
                       type: 'error',
                       title: 'Oops...',
-                      text: 'empleados no existe!'                         
+                      text: 'Municipio no existe!'                         
                     })
                 } else {
-                    $("#Emple_Codi").val(empleados.codigo);                   
-                    $("#Emple_Nomb").val(empleados.empleados);
-                    $("#Cargo_Codi").val(empleados.capital);
+                    $("#Cliente_Codi").val(clientes.codigo);                   
+                    $("#Cliente_Nomb").val(clientes.clientes);                   
+                    cargo = clientes.cargo;
                 }
+           });
+
+           $.ajax({
+             type:"get",
+             url:"./php/documento/controladordocumento.php",
+             data: {accion:'listar'},
+             dataType:"json"
+           }).done(function( resultado ) {                     
+              $("#Docu_Codi option").remove();
+              $.each(resultado.data, function (index, value) { 
+                
+                if(cargo === value.Docu_Nomb){
+                  $("#Docu_Codi").append("<option selected value='" + value.Docu_Codi+ value.Docu_Nomb+"</option>")
+                }else {
+                  $("#Docu_Codi").append("<option value='" + value.Docu_Codi + value.Docu_Nomb+"</option>")
+                }
+              });
            });
 
        })
@@ -199,24 +214,21 @@ $(document).ready(() => {
   $("#contenido").off("click","a.borrar");
   $("#contenido").off("click","button#nuevo");
   $("#contenido").off("click","button#grabar");
-
-  
-  $("#titulo").html("Listado de empleados"); 
-  
+  $("#titulo").html("Listado de clientes"); 
   dt = $("#tabla").DataTable({
-        "ajax": "php/empleados/controladorEmpleados.php?accion=listar",
+        "ajax": "php/clientes/controladorClientes.php?accion=listar",
         "columns": [
-            { "data": "Emple_Codi"} ,
-            { "data": "Emple_Nomb" },
-            { "data": "Emple_Apell" },
-            { "data": "Cargo_Codi" },
-            { "data": "Emple_Codi",
+            { "data": "Cliente_Codi"} ,
+            { "data": "Cliente_Nomb" },
+            { "data": "Cliente_Apell" },
+            { "data": "Docu_Codi" },
+            { "data": "Cliente_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>' 
                 }
             },
-            { "data": "Emple_Codi",
+            { "data": "Cliente_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
@@ -225,5 +237,5 @@ $(document).ready(() => {
         ]
   });
 
-  empleados();
+  clientes();
 });

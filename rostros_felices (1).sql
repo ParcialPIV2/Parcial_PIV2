@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-04-2020 a las 16:35:52
+-- Tiempo de generación: 27-04-2020 a las 18:43:41
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `rostros felices`
+-- Base de datos: `rostros_felices`
 --
 
 -- --------------------------------------------------------
@@ -54,9 +54,7 @@ INSERT INTO `tb_cargo` (`Cargo_Codi`, `Tipo_Cargo`) VALUES
 CREATE TABLE `tb_cliente` (
   `Cliente_Codi` bigint(10) UNSIGNED NOT NULL,
   `Cliente_Nom` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `Cliente_Nomb2` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `Cliente_Apell` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `Cliente_Apell2` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `Docu_Codi` int(10) UNSIGNED NOT NULL,
   `Documento` int(50) UNSIGNED NOT NULL,
   `Cliente_Email` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -68,19 +66,19 @@ CREATE TABLE `tb_cliente` (
 -- Volcado de datos para la tabla `tb_cliente`
 --
 
-INSERT INTO `tb_cliente` (`Cliente_Codi`, `Cliente_Nom`, `Cliente_Nomb2`, `Cliente_Apell`, `Cliente_Apell2`, `Docu_Codi`, `Documento`, `Cliente_Email`, `Cliente_Cel`, `Cliente_Direc`) VALUES
-(120, 'sebastian', 'papa', 'gutierrez', 'clavijo', 2, 38430403, 'sebas82@hotmail.com', 39498549, 'calle 14B #10-103'),
-(121, 'juan', 'camilo', 'restrepo', 'campo', 3, 2729489480, 'xcamilo20@gmail.com', 34935939, 'calle 23 #7-34, '),
-(122, 'jorge', 'alberto', 'acero', 'garcia', 3, 1338728382, 'jorgeacero91@gmail.com', 94893439, 'calle 14B #23-101'),
-(123, 'erick', 'francisco', 'cuellar', 'moreno', 4, 127287323, 'erick237@gmail.com', 84040549, 'calle 23A #24-13'),
-(124, 'luis', 'carlos', 'aux', 'españa', 1, 29302402, 'carlosaux20@gmail.com', 340390439, 'calle 23C #24-101'),
-(125, 'maria', 'paula', 'rojas', 'palta', 5, 719300290, 'valeria66@hotmail.com', 3053801210, 'calle 14B #20-108'),
-(126, 'juan', 'manuel ', 'restrepo', 'campo', 7, 792829891, 'juanmanuel21@hotmail.com', 3053201719, 'calle 21A#20-101'),
-(127, 'carlos', 'mario', 'acero', 'garcia', 6, 719901219, 'carlosmario61@gmail.com', 3396219, 'calle 66 #10-102'),
-(128, 'laura', 'daniela', 'tovar', 'cardona', 3, 829839293, 'lau27@gmail.com', 3048348949, 'calle 14B #10-78'),
-(129, 'juan', 'sebastian', 'padilla', 'garcia', 4, 2983928392, 'juanpadilla23@hotmail.com', 305832983, 'calle14C #28-106'),
-(130, 'juan', 'felipe', 'rodriguez', 'grisales', 2, 515166161, 'JuanFelipe.Rodriguez1@hotmail.com', 30566218, 'calle 7A#20-118'),
-(131, 'angela ', 'maria', 'orozco', 'medina', 1, 1513232112, 'Maria.Orozco1@hotmail.com', 350841626, 'calle 23D #20_105');
+INSERT INTO `tb_cliente` (`Cliente_Codi`, `Cliente_Nom`, `Cliente_Apell`, `Docu_Codi`, `Documento`, `Cliente_Email`, `Cliente_Cel`, `Cliente_Direc`) VALUES
+(120, 'sebastian', 'gutierrez', 2, 38430403, 'sebas82@hotmail.com', 39498549, 'calle 14B #10-103'),
+(121, 'juan', 'restrepo', 3, 2729489480, 'xcamilo20@gmail.com', 34935939, 'calle 23 #7-34, '),
+(122, 'jorge', 'acero', 3, 1338728382, 'jorgeacero91@gmail.com', 94893439, 'calle 14B #23-101'),
+(123, 'erick', 'cuellar', 4, 127287323, 'erick237@gmail.com', 84040549, 'calle 23A #24-13'),
+(124, 'luis', 'aux', 1, 29302402, 'carlosaux20@gmail.com', 340390439, 'calle 23C #24-101'),
+(125, 'maria', 'rojas', 5, 719300290, 'valeria66@hotmail.com', 3053801210, 'calle 14B #20-108'),
+(126, 'juan', 'restrepo', 7, 792829891, 'juanmanuel21@hotmail.com', 3053201719, 'calle 21A#20-101'),
+(127, 'carlos', 'acero', 6, 719901219, 'carlosmario61@gmail.com', 3396219, 'calle 66 #10-102'),
+(128, 'laura', 'tovar', 3, 829839293, 'lau27@gmail.com', 3048348949, 'calle 14B #10-78'),
+(129, 'juan', 'padilla', 4, 2983928392, 'juanpadilla23@hotmail.com', 305832983, 'calle14C #28-106'),
+(130, 'juan', 'rodriguez', 2, 515166161, 'JuanFelipe.Rodriguez1@hotmail.com', 30566218, 'calle 7A#20-118'),
+(131, 'angela ', 'orozco', 1, 1513232112, 'Maria.Orozco1@hotmail.com', 350841626, 'calle 23D #20_105');
 
 -- --------------------------------------------------------
 
@@ -91,9 +89,7 @@ INSERT INTO `tb_cliente` (`Cliente_Codi`, `Cliente_Nom`, `Cliente_Nomb2`, `Clien
 CREATE TABLE `tb_empleados` (
   `Emple_Codi` bigint(10) UNSIGNED NOT NULL,
   `Emple_Nomb` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre del empleado',
-  `Emple_Nomb2` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `Emple_Apell` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'apellido del empleado',
-  `Emple_Apell2` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `Documento` int(50) NOT NULL,
   `Cargo_Codi` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -102,13 +98,13 @@ CREATE TABLE `tb_empleados` (
 -- Volcado de datos para la tabla `tb_empleados`
 --
 
-INSERT INTO `tb_empleados` (`Emple_Codi`, `Emple_Nomb`, `Emple_Nomb2`, `Emple_Apell`, `Emple_Apell2`, `Documento`, `Cargo_Codi`) VALUES
-(10, 'juan', 'camilo', 'montes', 'cabrera', 29043343, 1),
-(11, 'maria', 'jose', 'molina', 'quintero', 121921924, 2),
-(12, 'angie', 'valeria', 'idrobo', 'sierra', 928912010, 3),
-(13, 'edward', 'camilo', 'sierra', 'samboni', 530180312, 4),
-(14, 'jhoan', 'sebastian', 'quintero', 'barrera', 121829834, 5),
-(15, 'laura', 'sofia', 'pareja', 'muñoz', 384934930, 6);
+INSERT INTO `tb_empleados` (`Emple_Codi`, `Emple_Nomb`, `Emple_Apell`, `Documento`, `Cargo_Codi`) VALUES
+(10, 'juan', 'montes', 29043343, 1),
+(11, 'maria', 'molina', 121921924, 2),
+(12, 'angie', 'idrobo', 928912010, 3),
+(13, 'edward', 'sierra', 530180312, 4),
+(14, 'jhoan', 'quintero', 121829834, 5),
+(26, 'prueba', 'pruebita', 1111111, 1);
 
 -- --------------------------------------------------------
 
@@ -245,7 +241,7 @@ ALTER TABLE `tb_cliente`
 -- AUTO_INCREMENT de la tabla `tb_empleados`
 --
 ALTER TABLE `tb_empleados`
-  MODIFY `Emple_Codi` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Emple_Codi` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_productos`
