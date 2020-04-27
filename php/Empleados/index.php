@@ -23,7 +23,6 @@
 				<th>Nombre</th>
 				<th>Apellido</th>
 				<th>Documento</th>
-				<th>Cargo</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 			</tr>

@@ -186,7 +186,7 @@ function empleados(){
                 } else {
                     $("#Emple_Codi").val(empleados.codigo);                   
                     $("#Emple_Nomb").val(empleados.empleados);
-                    $("#Cargo_Codi").val(empleados.capital);
+                    $("#Cargo_Codi").val(empleados.cargo);
                 }
            });
 
