@@ -52,8 +52,6 @@ switch ($_GET['accion']){
             $respuesta = array(
                 'codigo' => $empleados->getEMPLE_CODI(),
                 'empleados' => $empleados->getEMPLE_NOMB(),
-                'empleados' => $empleados->getEMPLE_APELL(),
-                'empleados' => $empleados->getDOCUMENTO(),
                 'cargo' =>$empleados->getCARGO_CODI(),
                 'respuesta' =>'existe'
             );
