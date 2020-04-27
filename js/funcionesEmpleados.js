@@ -1,11 +1,11 @@
 var dt;
 
-function comuna(){
+function empleados(){
     $("#contenido").on("click","button#actualizar",function(){
-         var datos=$("#fcomuna").serialize();
+         var datos=$("#fempleados").serialize();
          $.ajax({
             type:"get",
-            url:"./php/comuna/controladorEmpleados.php",
+            url:"./php/empleados/controladorEmpleados.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -20,8 +20,8 @@ function comuna(){
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#comuna").removeClass("hide");
-                $("#comuna").addClass("show")
+                $("#empleados").removeClass("hide");
+                $("#empleados").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -38,7 +38,7 @@ function comuna(){
 
         swal({
               title: '¿Está seguro?',
-              text: "¿Realmente desea borrar la comuna con codigo : " + codigo + " ?",
+              text: "¿Realmente desea borrar la empleados con codigo : " + codigo + " ?",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -49,7 +49,7 @@ function comuna(){
 
                     var request = $.ajax({
                         method: "get",
-                        url: "./php/comuna/controladorEmpleados.php",
+                        url: "./php/empleados/controladorEmpleados.php",
                         data: {codigo: codigo, accion:'borrar'},
                         dataType: "json"
                     })
@@ -58,7 +58,7 @@ function comuna(){
                         if(resultado.respuesta == 'correcto'){
                             swal(
                                 'Borrado!',
-                                'La comuna con codigo : ' + codigo + ' fue borrada',
+                                'La empleados con codigo : ' + codigo + ' fue borrada',
                                 'success'
                             )     
                             dt.ajax.reload();                            
@@ -88,8 +88,8 @@ function comuna(){
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
-        $("#comuna").removeClass("hide");
-        $("#comuna").addClass("show");
+        $("#empleados").removeClass("hide");
+        $("#empleados").addClass("show");
 
     })
 
@@ -100,12 +100,12 @@ function comuna(){
     })
 
     $("#contenido").on("click","button#nuevo",function(){
-        $("#titulo").html("Nueva Comuna");
-        $("#nuevo-editar" ).load("./php/comuna/nuevosEmpleados.php"); 
+        $("#titulo").html("Nueva empleados");
+        $("#nuevo-editar" ).load("./php/empleados/nuevosEmpleados.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#comuna").removeClass("show");
-        $("#comuna").addClass("hide");
+        $("#empleados").removeClass("show");
+        $("#empleados").addClass("hide");
          $.ajax({
              type:"get",
              url:"./php/cargo/controladorCargo.php",
@@ -127,10 +127,10 @@ function comuna(){
         var Cargo_Codi = $("#Cargo_Codi").attr("value");
         var datos = "Emple_Codi="+Emple_Codi+"&Emple_Nomb="+Emple_Nomb+"&Cargo_Codi="+Cargo_Codi;*/
       
-      var datos=$("#fcomuna").serialize();
+      var datos=$("#fempleados").serialize();
        $.ajax({
             type:"get",
-            url:"./php/comuna/controladorEmpleados.php",
+            url:"./php/empleados/controladorEmpleados.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -145,8 +145,8 @@ function comuna(){
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#comuna").removeClass("hide");
-                $("#comuna").addClass("show")
+                $("#empleados").removeClass("hide");
+                $("#empleados").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -159,32 +159,32 @@ function comuna(){
 
 
     $("#contenido").on("click","a.editar",function(){
-       $("#titulo").html("Editar Comuna");
+       $("#titulo").html("Editar empleados");
        //Recupera datos del fromulario
        var codigo = $(this).data("codigo");
        var cargo;
-        $("#nuevo-editar").load("./php/comuna/editarEmpleados.php");
+        $("#nuevo-editar").load("./php/empleados/editarEmpleados.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#comuna").removeClass("show");
-        $("#comuna").addClass("hide");
+        $("#empleados").removeClass("show");
+        $("#empleados").addClass("hide");
        $.ajax({
            type:"get",
-           url:"./php/comuna/controladorEmpleados.php",
+           url:"./php/empleados/controladorEmpleados.php",
            data: {codigo: codigo, accion:'consultar'},
            dataType:"json"
-           }).done(function( comuna ) {        
-                if(comuna.respuesta === "no existe"){
+           }).done(function( empleados ) {        
+                if(empleados.respuesta === "no existe"){
                     swal({
                       type: 'error',
                       title: 'Oops...',
-                      text: 'Comuna no existe!!!!!'                         
+                      text: 'empleados no existe!!!!!'                         
                     })
                 } else {
-                    $("#Emple_Codi").val(comuna.codigo);                   
-                    $("#Emple_Nomb").val(comuna.comuna);
-                    $("#Emple_Nomb2").val(comuna.comuna);
-                    cargo = comuna.cargo;
+                    $("#Emple_Codi").val(empleados.codigo);                   
+                    $("#Emple_Nomb").val(empleados.empleados);
+                    $("#Emple_Nomb2").val(empleados.empleados);
+                    cargo = empleados.cargo;
                 }
            });
 
@@ -216,7 +216,7 @@ $(document).ready(() => {
   $("#contenido").off("click","button#grabar");
   $("#titulo").html("Listado de Empleados");
   dt = $("#tabla").DataTable({
-        "ajax": "php/comuna/controladorEmpleados.php?accion=listar",
+        "ajax": "php/empleados/controladorEmpleados.php?accion=listar",
         "columns": [
             { "data": "Emple_Codi"} ,
             { "data": "Emple_Nomb" },
@@ -236,5 +236,5 @@ $(document).ready(() => {
             }
         ]
   });
-  comuna();
+  empleados();
 });
