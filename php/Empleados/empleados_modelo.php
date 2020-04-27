@@ -1,37 +1,33 @@
 <?php
-    require_once("../modeloAbstractoDB.php");
-    class empleados extends ModeloAbstractoDB {
-		private $Emple_Codi;
-		private $Emple_Nomb;
-		private $Emple_Nomb2;
-		private $Cargo_Codi;
+	
+	require_once('../modeloAbstractoDB.php');
+	class Empleados extends ModeloAbstractoDB {
+		public $Emple_Codi;
+		public $Emple_Nomb;
+		public $Cargo_Codi;
 		
 		function __construct() {
-			//$this->db_name = '';
+			
 		}
-
-		public function getEmple_Codi(){
+		
+		public function getEMPLE_CODI(){
 			return $this->Emple_Codi;
 		}
 
-		public function getEmple_Nomb(){
+		public function getEMPLE_NOMB(){
 			return $this->Emple_Nomb;
 		}
-
-		public function getEmple_Nomb(){
-			return $this->Emple_Nomb2;
-		}
 		
-		public function getCargo_Codi(){
+		public function getCARGO_CODI(){
 			return $this->Cargo_Codi;
 		}
 
 		public function consultar($Emple_Codi='') {
-			if($Emple_Codi !=''):
+			if($Emple_Codi != ''):
 				$this->query = "
-				SELECT Emple_Codi, Emple_Nomb, Emple_Nomb2, Cargo_Codi
+				SELECT Emple_Codi,Emple_Nomb,Cargo_Codi
 				FROM tb_empleados
-				WHERE Emple_Codi = '$Emple_Codi' order by Emple_Codi
+				WHERE Emple_Codi = '$Emple_Codi'
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -44,44 +40,49 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Emple_Codi, Emple_Nomb, Emple_Nomb2, m.Tipo_Cargo
-			FROM tb_empleados as c inner join tb_cargo as m
-			ON (c.Cargo_Codi = m.Cargo_Codi) order by Emple_Codi
+			SELECT Emple_Codi,Emple_Nomb,Cargo_Codi FROM tb_empleados ORDER BY Emple_Codi
 			";
-			
 			$this->obtener_resultados_query();
 			return $this->rows;
-			
+		}
+
+		public function listaPais() {
+			$this->query = "
+			SELECT *
+			FROM tb_empleados order by Emple_Nomb
+			";
+			$this->obtener_resultados_query();
+			return $this->rows;
 		}
 		
+
 		public function nuevo($datos=array()) {
 			if(array_key_exists('Emple_Codi', $datos)):
+				//$datos = utf8_string_array_encode($datos);
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
-				$Emple_Nomb= utf8_decode($Emple_Nomb);
-				$Emple_Nomb2= utf8_decode($Emple_Nomb2);
+				$Emple_Codi= utf8_decode($Emple_Nomb);
 				$this->query = "
-					INSERT INTO tb_empleados
-					(Emple_Codi, Emple_Nomb, Emple_Nomb2, Cargo_Codi)
-					VALUES
-					(NULL, '$Emple_Nomb', '$Emple_Nomb2', '$Cargo_Codi')
-					";
+				INSERT INTO tb_empleados
+				(Emple_Codi, Emple_Nomb, Cargo_Codi)
+				VALUES
+				('$Emple_Codi','$Emple_Nomb', '$Cargo_Codi')
+				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
 			endif;
 		}
-		
+
 		public function editar($datos=array()) {
 			foreach ($datos as $campo=>$valor):
 				$$campo = $valor;
 			endforeach;
-			$Emple_Nomb= utf8_decode($Emple_Nomb);
+			$Emple_Codi= utf8_decode($Emple_Codi);
 			$this->query = "
 			UPDATE tb_empleados
 			SET Emple_Nomb='$Emple_Nomb',
-			SET Emple_Nomb2='$Emple_Nomb2',
-			Cargo_Codi='$Cargo_Codi'
+            Cargo_Codi='$Cargo_Codi'
 			WHERE Emple_Codi = '$Emple_Codi'
 			";
 			$resultado = $this->ejecutar_query_simple();

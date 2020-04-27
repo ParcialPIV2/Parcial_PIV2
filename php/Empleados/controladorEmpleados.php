@@ -4,15 +4,15 @@ require_once 'empleados_modelo.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $empleados = new empleados();
-        $resultado = $empleados->editar($datos);
+        $empleados= new Empleados();
+		$resultado = $empleados->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
         echo json_encode($respuesta);
         break;
     case 'nuevo':
-        $empleados = new empleados();
+        $empleados= new Empleados();
 		$resultado = $empleados->nuevo($datos);
         if($resultado > 0) {
             $respuesta = array(
@@ -26,7 +26,7 @@ switch ($_GET['accion']){
         echo json_encode($respuesta);
         break;
     case 'borrar':
-		$empleados = new empleados();
+		$empleados= new Empleados();
 		$resultado = $empleados->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
@@ -41,19 +41,18 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $empleados = new empleados();
+        $empleados= new Empleados();
         $empleados->consultar($datos['codigo']);
 
-        if($empleados->getEmple_Codi() == null) {
+        if($empleados->getempleados_codi() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $empleados->getEmple_Codi(),
-                'nombre' => $empleados->getEmple_Nomb(),
-                'apellido' => $empleados->getEmple_Nomb2(),
-                'municipio' =>$empleados->getCargo_Codi(),
+                'codigo' => $empleados->getEMPLE_CODI(),
+                'empleados' => $empleados->getEMPLE_NOMB(),
+                'cargo' =>$empleados->getCARGO_CODI(),
                 'respuesta' =>'existe'
             );
         }
@@ -61,9 +60,9 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $empleados = new empleados();
-        $listado = $empleados->lista();
-        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
+        $empleados= new Empleados();
+        $listado = $empleados->lista();        
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
 }
 ?>
