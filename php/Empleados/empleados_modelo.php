@@ -4,6 +4,7 @@
 	class Empleados extends ModeloAbstractoDB {
 		public $Emple_Codi;
 		public $Emple_Nomb;
+		public $Emple_Apell;
 		public $Cargo_Codi;
 		
 		function __construct() {
@@ -17,6 +18,10 @@
 		public function getEMPLE_NOMB(){
 			return $this->Emple_Nomb;
 		}
+
+		public function getEMPLE_APELL(){
+			return $this->Emple_Apell;
+		}
 		
 		public function getCARGO_CODI(){
 			return $this->Cargo_Codi;
@@ -25,7 +30,7 @@
 		public function consultar($Emple_Codi='') {
 			if($Emple_Codi != ''):
 				$this->query = "
-				SELECT Emple_Codi,Emple_Nomb,Cargo_Codi
+				SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Cargo_Codi
 				FROM tb_empleados
 				WHERE Emple_Codi = '$Emple_Codi'
 				";
@@ -40,7 +45,7 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Emple_Codi,Emple_Nomb,Cargo_Codi FROM tb_empleados ORDER BY Emple_Codi
+			SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Cargo_Codi FROM tb_empleados ORDER BY Emple_Codi
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
@@ -65,7 +70,7 @@
 				$Emple_Codi= utf8_decode($Emple_Nomb);
 				$this->query = "
 				INSERT INTO tb_empleados
-				(Emple_Codi, Emple_Nomb, Cargo_Codi)
+				(Emple_Codi, Emple_Nomb,Emple_Apell, Cargo_Codi)
 				VALUES
 				('$Emple_Codi','$Emple_Nomb', '$Cargo_Codi')
 				";
@@ -82,6 +87,7 @@
 			$this->query = "
 			UPDATE tb_empleados
 			SET Emple_Nomb='$Emple_Nomb',
+			SET Emple_Apell='$Emple_Apell',
             Cargo_Codi='$Cargo_Codi'
 			WHERE Emple_Codi = '$Emple_Codi'
 			";
