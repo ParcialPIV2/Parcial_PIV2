@@ -208,6 +208,8 @@ $(document).ready(() => {
         "columns": [
             { "data": "Emple_Codi"} ,
             { "data": "Emple_Nomb" },
+            { "data": "Emple_Apell" },
+            { "data": "Documento" },
             { "data": "Cargo_Codi" },
             { "data": "Emple_Codi",
                 render: function (data) {
