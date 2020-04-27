@@ -4,9 +4,9 @@
 		private static $db_user = "root";
 		private static $db_pass = "";
 		protected $db_name = "rostros_felices";
-		protected $query; //Definimos las sentencias SQL
-		protected $rows = array(); //Resultados Query
-		private $conexion; //Conexion a la base de datos
+		protected $query;
+		protected $rows = array();
+		private $conexion;
 		
 		# m�todos abstractos para Gesti�n de clases que hereden
 		abstract protected function consultar();

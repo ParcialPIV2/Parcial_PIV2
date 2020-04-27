@@ -38,7 +38,7 @@ function empleados(){
 
         swal({
               title: '¿Está seguro?',
-              text: "¿Realmente desea borrar la empleados con codigo : " + codigo + " ?",
+              text: "¿Realmente desea borrar el empleado con codigo : " + codigo + " ?",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -58,7 +58,7 @@ function empleados(){
                         if(resultado.respuesta == 'correcto'){
                             swal(
                                 'Borrado!',
-                                'La empleados con codigo : ' + codigo + ' fue borrada',
+                                'El empleado con codigo : ' + codigo + ' fue borrado',
                                 'success'
                             )     
                             dt.ajax.reload();                            
@@ -159,7 +159,7 @@ function empleados(){
 
 
     $("#contenido").on("click","a.editar",function(){
-       $("#titulo").html("Editar empleados");
+       $("#titulo").html("Editar Empleados");
        //Recupera datos del fromulario
        var codigo = $(this).data("codigo");
        var cargo;
@@ -222,7 +222,8 @@ $(document).ready(() => {
             { "data": "Emple_Nomb" },
             { "data": "Emple_Nomb2" },
             { "data": "Tipo_Cargo" },
-            { "data": "Emple_Codi",
+            { 
+              "data": "Emple_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>' 

@@ -51,8 +51,8 @@ switch ($_GET['accion']){
         }  else {
             $respuesta = array(
                 'codigo' => $empleados->getEmple_Codi(),
-                'empleados' => $empleados->getEmple_Nomb(),
-                'empleados' => $empleados->getEmple_Nomb2(),
+                'nombre' => $empleados->getEmple_Nomb(),
+                'apellido' => $empleados->getEmple_Nomb2(),
                 'municipio' =>$empleados->getCargo_Codi(),
                 'respuesta' =>'existe'
             );

@@ -4,7 +4,7 @@
 		private $Emple_Codi;
 		private $Emple_Nomb;
 		private $Emple_Nomb2;
-		private $Cargo_Nomb;
+		private $Cargo_Codi;
 		
 		function __construct() {
 			//$this->db_name = '';
@@ -22,14 +22,14 @@
 			return $this->Emple_Nomb2;
 		}
 		
-		public function getCargo_Nomb(){
-			return $this->Cargo_Nomb;
+		public function getCargo_Codi(){
+			return $this->Cargo_Codi;
 		}
 
 		public function consultar($Emple_Codi='') {
 			if($Emple_Codi !=''):
 				$this->query = "
-				SELECT Emple_Codi, Emple_Nomb, Emple_Nomb2, Cargo_Nomb
+				SELECT Emple_Codi, Emple_Nomb, Emple_Nomb2, Cargo_Codi
 				FROM tb_empleados
 				WHERE Emple_Codi = '$Emple_Codi' order by Emple_Codi
 				";
@@ -44,9 +44,9 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Emple_Codi, Emple_Nomb, Emple_Nomb2, m.muni_nomb
+			SELECT Emple_Codi, Emple_Nomb, Emple_Nomb2, m.Tipo_Cargo
 			FROM tb_empleados as c inner join tb_cargo as m
-			ON (c.Cargo_Nomb = m.Cargo_Nomb) order by Emple_Codi
+			ON (c.Cargo_Codi = m.Cargo_Codi) order by Emple_Codi
 			";
 			
 			$this->obtener_resultados_query();
@@ -63,9 +63,9 @@
 				$Emple_Nomb2= utf8_decode($Emple_Nomb2);
 				$this->query = "
 					INSERT INTO tb_empleados
-					(Emple_Codi, Emple_Nomb, Emple_Nomb2, Cargo_Nomb)
+					(Emple_Codi, Emple_Nomb, Emple_Nomb2, Cargo_Codi)
 					VALUES
-					(NULL, '$Emple_Nomb', '$Emple_Nomb2', '$Cargo_Nomb')
+					(NULL, '$Emple_Nomb', '$Emple_Nomb2', '$Cargo_Codi')
 					";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -81,7 +81,7 @@
 			UPDATE tb_empleados
 			SET Emple_Nomb='$Emple_Nomb',
 			SET Emple_Nomb2='$Emple_Nomb2',
-			Cargo_Nomb='$Cargo_Nomb'
+			Cargo_Codi='$Cargo_Codi'
 			WHERE Emple_Codi = '$Emple_Codi'
 			";
 			$resultado = $this->ejecutar_query_simple();
