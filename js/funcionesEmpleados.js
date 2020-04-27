@@ -102,7 +102,7 @@ function empleados(){
 
     $("#contenido").on("click","button#nuevo",function(){
         $("#titulo").html("Nuevo empleados");
-        $("#nuevo-editar" ).load("./php/empleados/nuevosEmpleados.php"); 
+        $("#nuevo-editar" ).load("./php/empleados/nuevoempleados.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#empleados").removeClass("show");
@@ -186,7 +186,7 @@ function empleados(){
                 } else {
                     $("#Emple_Codi").val(empleados.codigo);                   
                     $("#Emple_Nomb").val(empleados.empleados);
-                    $("#Cargo_Codi").val(empleados.cargo);
+                    $("#Cargo_Codi").val(empleados.capital);
                 }
            });
 
@@ -208,8 +208,6 @@ $(document).ready(() => {
         "columns": [
             { "data": "Emple_Codi"} ,
             { "data": "Emple_Nomb" },
-            { "data": "Emple_Apell" },
-            { "data": "Documento" },
             { "data": "Cargo_Codi" },
             { "data": "Emple_Codi",
                 render: function (data) {
