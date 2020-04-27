@@ -21,7 +21,7 @@
 			<tr>
 				<th>Codigo</th>
 				<th>Nombre</th>
-				<th>Municipio</th>
+				<th>Apellido</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 			</tr>
@@ -33,5 +33,5 @@
 	</table>
 
 </div><!-- /.box-body -->  
-<script src="js/funcionesComuna.js"></script>
+<script src="js/funcionesClientes.js"></script>
 </div>
