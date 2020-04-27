@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="Emple_Nomb">Nombre:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Emple_Nomb" name="Emple_Nomb" placeholder="Ingrese Nombre empleados"
+                            <input type="text" class="form-control" id="Emple_Nomb" name="Emple_Nomb" placeholder="Ingrese nombre del empleado"
                             value = "">
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="Emple_Nomb2">Apellido del empleado:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Emple_Nomb2" name="Emple_Nomb2" placeholder="Ingrese apellido del empleados"
+                            <input type="text" class="form-control" id="Emple_Nomb2" name="Emple_Nomb2" placeholder="Ingrese apellido del empleado"
                             value = "">
                         </div>
                     </div>
