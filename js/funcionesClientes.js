@@ -162,8 +162,8 @@ function clientes(){
     $("#contenido").on("click","a.editar",function(){     
        $("#titulo").html("Editar cliente");
        //Recupera datos del fromulario
-       var codigo = $(this).data("codigo");
-  
+        var codigo = $(this).data("codigo");
+        var tipo;
         $("#nuevo-editar").load("./php/clientes/editar.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
@@ -183,7 +183,10 @@ function clientes(){
                     })
                 } else {
                     $("#Cliente_Codi").val(empleados.codigo);                   
-                    $("#Cliente_Nom").val(empleados.empleados);                   
+                    $("#Cliente_Nom").val(empleados.empleados);        
+                    $("#Cliente_Apell").val(empleados.apellido);                   
+                    $("#Docu_Nomb").val(empleados.nomdocu);    
+                    $("#Documento").val(empleados.codigo);                
                     tipo = empleados.tipo;
                 }
            });

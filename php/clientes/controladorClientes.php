@@ -44,7 +44,7 @@ switch ($_GET['accion']){
         $clientes= new Clientes();
         $clientes->consultar($datos['codigo']);
 
-        if($clientes->getclientes_codi() == null) {
+        if($clientes->getCLIENTES_CODI() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
@@ -53,7 +53,8 @@ switch ($_GET['accion']){
                 'codigo' => $clientes->getCLIENTES_CODI(),
                 'clientes' => $clientes->getCLIENTES_NOM(),
                 'apellido' => $clientes->getCLIENTES_APELL(),
-                'documentocodigo' =>$clientes->getDOCU_CODI(),
+                'documento codigo' =>$clientes->getDOCU_CODI(),
+                'documento' =>$clientes->getDOCUMENTO(),
                 'respuesta' =>'existe'
             );
         }

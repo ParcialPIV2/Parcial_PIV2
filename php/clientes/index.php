@@ -22,8 +22,8 @@
 			<th>Codigo</th>
 			<th>Nombre</th>
 			<th>Apellido</th>
-			<th>documento codigo</th>
-
+			<th>Tipo de documento</th>
+			<th>documento</th>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>

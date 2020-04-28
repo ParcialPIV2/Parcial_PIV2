@@ -19,14 +19,15 @@
 <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 	<thead>
 		<tr>
+			<th>Codigo servicio</th>
 			<th>Codigo cliente</th>
-			<th>Nombre del cliente</th>
-			<th>Documento del cliente</th>
+			<th>Nombre cliente</th>
+			<th>Documento cliente</th>
 			<th>Tratamiento</th>
 			<th>Valor tratamiento</th>
-			<th>Codigo del empleado</th>
-			<th>Nombre del empleado</th>
-			<th>Documento del empleado</th>
+			<th>Codigo empleado</th>
+			<th>Nombre empleado</th>
+			<th>Documento empleado</th>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>

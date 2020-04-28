@@ -1,11 +1,11 @@
 var dt;
 
-function departamento(){
+function servicios(){
     $("#contenido").on("click","button#actualizar",function(){
-         var datos=$("#fdepartamento").serialize();
+         var datos=$("#fservicios").serialize();
          $.ajax({
             type:"get",
-            url:"./php/departamento/controladorDepartamento.php",
+            url:"./php/servicios/controladorServicios.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -16,12 +16,12 @@ function departamento(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado departamentos");
+                $("#titulo").html("Listado servicios");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#departamento").removeClass("hide");
-                $("#departamento").addClass("show")
+                $("#servicio").removeClass("hide");
+                $("#servicio").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -38,7 +38,7 @@ function departamento(){
 
         swal({
               title: '¿Está seguro?',
-              text: "¿Realmente desea borrar el departamento con codigo : " + codigo + " ?",
+              text: "¿Realmente desea borrar el servicio con codigo : " + codigo + " ?",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -49,7 +49,7 @@ function departamento(){
 
                     var request = $.ajax({
                         method: "get",
-                        url: "./php/departamento/controladorDepartamento.php",
+                        url: "./php/servicios/controladorServicios.php",
                         data: {codigo: codigo, accion:'borrar'},
                         dataType: "json"
                     })
@@ -58,7 +58,7 @@ function departamento(){
                         if(resultado.respuesta == 'correcto'){
                             swal(
                                 'Borrado!',
-                                'La departamento con codigo : ' + codigo + ' fue borrada',
+                                'El sercicio con codigo : ' + codigo + ' fue borrada',
                                 'success'
                             )     
                             dt.ajax.reload();                            
@@ -84,12 +84,12 @@ function departamento(){
     });
 
     $("#contenido").on("click","button.btncerrar2",function(){
-        $("#titulo").html("Listado Departamentos");
+        $("#titulo").html("Listado servicios");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
-        $("#departamento").removeClass("hide");
-        $("#departamento").addClass("show");
+        $("#servicio").removeClass("hide");
+        $("#servicio").addClass("show");
 
     })
 
@@ -100,37 +100,37 @@ function departamento(){
     })
 
     $("#contenido").on("click","button#nuevo",function(){
-        $("#titulo").html("Nueva departamento");
-        $("#nuevo-editar" ).load("./php/departamento/nuevaDepartamento.php"); 
+        $("#titulo").html("Nuevo servicio");
+        $("#nuevo-editar" ).load("./php/servicios/nuevaServicios.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#departamento").removeClass("show");
-        $("#departamento").addClass("hide");
+        $("#servicio").removeClass("show");
+        $("#servicio").addClass("hide");
          $.ajax({
              type:"get",
-             url:"./php/departamento/controladorDepartamento.php",
+             url:"./php/servicios/controladorServicios.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {   
               //console.log(resultado.data)           
-              $("#depa_codi option").remove()       
-              $("#depa_codi").append("<option selecte value=''>Seleccione un departamento</option>")
+              $("#Servi_Codi option").remove()       
+              $("#Servi_Codi").append("<option selecte value=''>Seleccione un servicio</option>")
               $.each(resultado.data, function (index, value) { 
-                $("#depa_codi").append("<option value='" + value.depa_codi + "'>" + value.depa_nomb + "</option>")
+                $("#Servi_Codi").append("<option value='" + value.Servi_Codi + "'>" + value.Tipo_Servi + "</option>")
               });
            });
     })
 
     $("#contenido").on("click","button#grabar",function(){
-        /*var depa_codi = $("#depa_codi").attr("value");
-        var depa_nomb = $("#depa_nomb").attr("value");
-        var depa_codi = $("#depa_codi").attr("value");
-        var datos = "depa_codi="+depa_codi+"&depa_nomb="+depa_nomb+"&depa_codi="+depa_codi;*/
+        /*var Servi_Codi = $("#Servi_Codi").attr("value");
+        var Tipo_Servi = $("#Tipo_Servi").attr("value");
+        var Servi_Codi = $("#Servi_Codi").attr("value");
+        var datos = "Servi_Codi="+Servi_Codi+"&Tipo_Servi="+Tipo_Servi+"&Servi_Codi="+Servi_Codi;*/
       
-      var datos=$("#fdepartamento").serialize();
+      var datos=$("#fservicios").serialize();
        $.ajax({
             type:"get",
-            url:"./php/departamento/controladorDepartamento.php",
+            url:"./php/servicios/controladorServicios.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -141,12 +141,12 @@ function departamento(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado Departamentos");
+                $("#titulo").html("Listado servicios");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#departamento").removeClass("hide");
-                $("#departamento").addClass("show")
+                $("#servicio").removeClass("hide");
+                $("#servicio").addClass("show")
              } else {
                 swal({
                   type: 'error',
@@ -166,11 +166,11 @@ function departamento(){
         $("#nuevo-editar").load("./php/departamento/editarDepartamento.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#departamento").removeClass("show");
-        $("#departamento").addClass("hide");
+        $("#servicio").removeClass("show");
+        $("#servicio").addClass("hide");
        $.ajax({
            type:"get",
-           url:"./php/departamento/controladorDepartamento.php",
+           url:"./php/servicios/controladorServicios.php",
            data: {codigo: codigo, accion:'consultar'},
            dataType:"json"
            }).done(function( departamento ) {        
@@ -181,25 +181,25 @@ function departamento(){
                       text: 'departamento no existe!!!!!'                         
                     })
                 } else {
-                    $("#depa_codi").val(departamento.codigo);                   
-                    $("#depa_nomb").val(departamento.departamento);
+                    $("#Servi_Codi").val(departamento.codigo);                   
+                    $("#Tipo_Servi").val(departamento.departamento);
                     departamento = departamento.departamento;
                 }
            });
 
            $.ajax({
              type:"get",
-             url:"./php/departamento/controladorDepartamento.php",
+             url:"./php/servicios/controladorServicios.php",
              data: {accion:'listar'},
              dataType:"json"
            }).done(function( resultado ) {                     
-              $("#depa_codi option").remove();
+              $("#Servi_Codi option").remove();
               $.each(resultado.data, function (index, value) { 
                 
-                if(departamento === value.depa_codi){
-                  $("#depa_codi").append("<option selected value='" + value.depa_codi + "'>" + value.depa_nomb + "</option>")
+                if(departamento === value.Servi_Codi){
+                  $("#Servi_Codi").append("<option selected value='" + value.Servi_Codi + "'>" + value.Tipo_Servi + "</option>")
                 }else {
-                  $("#depa_codi").append("<option value='" + value.depa_codi + "'>" + value.depa_nomb + "</option>")
+                  $("#Servi_Codi").append("<option value='" + value.Servi_Codi + "'>" + value.Tipo_Servi + "</option>")
                 }
               });
            });    
@@ -217,16 +217,16 @@ $(document).ready(() => {
   dt = $("#tabla").DataTable({
         "ajax": "php/departamento/controladorDepartamento.php?accion=listar",
         "columns": [
-            { "data": "depa_codi"} ,
-            { "data": "depa_nomb" },
+            { "data": "Servi_Codi"} ,
+            { "data": "Tipo_Servi" },
             { "data": "pais_nomb" },
-            { "data": "depa_codi",
+            { "data": "Servi_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>' 
                 }
             },
-            { "data": "depa_codi",
+            { "data": "Servi_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
@@ -234,5 +234,5 @@ $(document).ready(() => {
             }
         ]
   });
-  departamento();
+  servicios();
 });

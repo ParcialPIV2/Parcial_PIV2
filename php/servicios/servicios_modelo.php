@@ -3,9 +3,12 @@
 	class Historial extends ModeloAbstractoDB {
 		public $Cliente_Codi;
 		public $Cliente_Nom;
-		public $Documento;
+		public $Cliente_Apell;
+		public $Docu_Cli;
+		public $Docu_Emple;
 		public $Emple_Codi;
 		public $Emple_Nomb;
+		public $Emple_Apell;
 		public $Trata_Codi;
 		
 		function __construct() {
@@ -19,17 +22,29 @@
 		public function getCLIENTE_NOM(){
 			return $this->Cliente_Nom;
 		}
+
+		public function getCLIENTE_APELL(){
+			return $this->Cliente_Apell;
+		}
 		
-		public function getDOCUMENTO(){
-			return $this->Documento;
+		public function getDOCU_CLI(){
+			return $this->Docu_Cli;
 		}
 
-		public function getEmple_Codi(){
+		public function getDOCU_EMPLE(){
+			return $this->Docu_Emple;
+		}
+
+		public function getEMPLE_CODI(){
 			return $this->Emple_Codi;
 		}
 
 		public function getEMPLE_NOMB(){
 			return $this->Emple_Nomb;
+		}
+
+		public function getEMPLE_APELL(){
+			return $this->Emple_Apell;
 		}
 
 		public function getTRATA_CODI(){

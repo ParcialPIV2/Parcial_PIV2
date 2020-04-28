@@ -75,7 +75,7 @@
 				endforeach;
 				$this->query = "
 				INSERT INTO tb_empleados
-				(Emple_Codi, Emple_Nomb, Cargo_Codi,Emple_Apell,Documento)
+				(Emple_Codi, Emple_Nomb, Cargo_Codi, Emple_Apell,Documento)
 				VALUES
 				('$Emple_Codi','$Emple_Nomb', '$Cargo_Codi','$Emple_Apell','$Documento')
 				";

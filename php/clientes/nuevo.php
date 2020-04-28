@@ -45,10 +45,18 @@
                             value = "">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Documento">Documento:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Document" name="Documen" placeholder="Ingrese documento del empleado"
+                            value = "">
+                        </div>
+                    </div>
 					
 					
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Docu_Codi">codigo documento: </label>
+                        <label class="control-label col-sm-2" for="Docu_Codi">Tipo de documento: </label>
                         <div class="col-sm-10">
                             <select class="form-control" id="Docu_Codi" name="Docu_Codi">
                          

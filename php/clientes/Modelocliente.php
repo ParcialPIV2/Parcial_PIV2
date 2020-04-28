@@ -5,6 +5,7 @@
 		public $Cliente_Codi;
 		public $Cliente_Nom;
 		public $Cliente_Apell;
+		public $Documento;
 		public $Docu_Codi;
 		
 		function __construct() {
@@ -22,15 +23,19 @@
 		public function getCLIENTE_APELL(){
 			return $this->Cliente_Apell;
 		}
+
+		public function getDOCUMENTO(){
+			return $this->Documento;
+		}
 		
-		public function getDOCU_CODI(){
+		public function getDOCU_Codi(){
 			return $this->Docu_Codi;
 		}
 
 		public function consultar($Cliente_Codi='') {
 			if($Cliente_Codi != ''):
 				$this->query = "
-				SELECT Cliente_Codi,Cliente_Nom,Cliente_Apell,Cliente_Codi
+				SELECT Cliente_Codi,Cliente_Nom,Cliente_Apell,Cliente_Codi,Documento
 				FROM tb_cliente
 				WHERE Cliente_Codi = '$Cliente_Codi'
 				";
@@ -45,7 +50,7 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Cliente_Codi, Cliente_Nom, Cliente_Apell, p.Docu_Codi 
+			SELECT Cliente_Codi, Cliente_Nom, Cliente_Apell,Documento, p.Docu_Codi
 			FROM tb_cliente as m inner join tb_tipo_documento as p
 			ON (m.Docu_Codi = p.Docu_Codi) ORDER BY m.Cliente_Nom
 			";
@@ -53,9 +58,9 @@
 			return $this->rows;
 		}
 
-		public function listaempleados() {
+		public function listaclientes() {
 			$this->query = "
-			SELECT Cliente_Codi, Cliente_Nom,Cliente_Apell,
+			SELECT Cliente_Codi, Cliente_Nom,Cliente_Apell,Documento
 			FROM tb_cliente as d order by Cliente_Nom
 			";
 			$this->obtener_resultados_query();
@@ -69,9 +74,9 @@
 				endforeach;
 				$this->query = "
 				INSERT INTO tb_cliente
-				(Cliente_Codi, Cliente_Nom, Docu_Codi,Cliente_Apell,)
+				(Cliente_Codi, Cliente_Nom, Docu_Codi,Cliente_Apell,Documento)
 				VALUES
-				('$Cliente_Codi','$Cliente_Nom', '$Docu_Codi','$Cliente_Apell')
+				('$Cliente_Codi','$Cliente_Nom', '$Docu_Codi', '$Documento','$Cliente_Apell')
 				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -84,7 +89,7 @@
 			endforeach;
 			$this->query = "
 			UPDATE tb_cliente
-			SET Cliente_Nom='$Cliente_Nom', Cliente_Apell='$Cliente_Apell',Docu_Codi='$Docu_Codi'
+			SET Cliente_Nom='$Cliente_Nom', Cliente_Apell='$Cliente_Apell',Docu_Codi='$Docu_Codi',Documento='$Documento'
 			WHERE Cliente_Codi = '$Cliente_Codi'
 			";
 			$resultado = $this->ejecutar_query_simple();
