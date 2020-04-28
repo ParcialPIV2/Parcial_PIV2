@@ -51,13 +51,15 @@
              );
          }  else {
              $respuesta = array(
-                 'codigo cliente' => $servicios->getCLIENTE_CODI(),
-                 'cliente nombre completo' => $servicios->getCLIENTE_NOMB(),getCLIENTE_APELL(),
-                 'documento cliente' => $servicios->getDOCUM_CLI(),
+                 'codigocliente' => $servicios->getCLIENTE_CODI(),
+                 'nombrecliente' => $servicios->getCLIENTE_NOM(),
+                 'apellidocliente' => $servicios->getCLIENTE_APELL(),
+                 'documentocliente' => $servicios->getDOCU_CLI(),
+                 'codigoempleado' => $servicios->getEMPLE_CODI(),
+                 'nombreempleado' => $servicios->getEMPLE_NOMB(),
+                 'apellidoempleado' => $servicios->getEMPLE_APELL(),
+                 'documentoempleado' => $servicios->getDOCU_EMPLE(),
                  'tratamiento' => $servicios->getTRATA_CODI(),
-                 'codigo empleado' => $servicios->getEMPLE_CODI(),
-                 'empleado nombre completo' => $servicios->getEMPLE_NOMB(),getEMPLE_APELL(),
-                 'documento empleado' => $servicios->getDOCU_EMPLE(),
                  'cargo' =>$servicios->getCARGO_CODI(),
                  'respuesta' =>'existe'
              );

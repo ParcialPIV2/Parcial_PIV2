@@ -9,6 +9,7 @@
 		public $Emple_Codi;
 		public $Emple_Nomb;
 		public $Emple_Apell;
+		public $Cargo_Codi;
 		public $Trata_Codi;
 		
 		function __construct() {
@@ -49,6 +50,9 @@
 
 		public function getTRATA_CODI(){
 			return $this->Trata_Codi;
+		}
+		public function getCARGO_CODI(){
+			return $this->Cargo_Codi;
 		}
 
 		public function consultar($Trata_Codi='') {
