@@ -1,8 +1,8 @@
 var dt;
 
-function servicios(){
+function servicio(){
     $("#contenido").on("click","button#actualizar",function(){
-         var datos=$("#fservicios").serialize();
+         var datos=$("#fservicio").serialize();
          $.ajax({
             type:"get",
             url:"./php/servicios/controladorServicios.php",
@@ -127,7 +127,7 @@ function servicios(){
         var Cliente_Codi = $("Cliente_Codi").attr("value");
         var datos = "comu_codi="+comu_codi+"&comu_nomb="+comu_nomb+"&Cliente_Codi="+Cliente_Codi;*/
       
-      var datos=$("#fservicios").serialize();
+      var datos=$("#fservicio").serialize();
 
       $.ajax({
             type:"get",
@@ -220,21 +220,22 @@ $(document).ready(() => {
   dt = $("#tabla").DataTable({
         "ajax": "php/servicios/controladorServicios.php?accion=listar",
         "columns": [
-            { "data": "Emple_Codi"} ,
-            { "data": "Emple_Nomb" },
-            { "data": "Emple_Apell" },
-            { "data": "Docu_Emp" },
-            { "data": "Cliente_Codi" },
-            { "data": "Cliente_Nom" },
-            { "data": "Cliente_Apell" },
-            { "data": "Docu_Cli" },
-            { "data": "Emple_Codi",
+            { "data": "servi_codi"} ,
+            { "data": "Cliente_Codi"} ,
+            //{ "data": "Cliente_Nom" },
+            //{ "data": "Docu_Emple" },
+            { "data": "Emple_Codi" },
+            //{ "data": "Emple_Nomb" },
+            //{ "data": "Docu_Cli" },
+            { "data": "Trata_Codi"},
+            { "data": "Cargo_Codi"},
+            { "data": "servi_codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>' 
                 }
             },
-            { "data": "Emple_Codi",
+            { "data": "servi_codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
                                  '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
@@ -243,5 +244,5 @@ $(document).ready(() => {
         ]
   });
 
-  servicios();
+  servicio();
 });

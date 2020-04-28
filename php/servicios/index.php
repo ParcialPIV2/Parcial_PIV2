@@ -21,13 +21,14 @@
 		<tr>
 			<th>Codigo servicio</th>
 			<th>Codigo cliente</th>
-			<th>Nombre cliente</th>
-			<th>Documento cliente</th>
+			<!--<th>Nombre cliente</th>
+			<th>Documento cliente</th>-->
 			<th>Tratamiento</th>
-			<th>Valor tratamiento</th>
+			<!--<th>Valor tratamiento</th>-->
 			<th>Codigo empleado</th>
-			<th>Nombre empleado</th>
-			<th>Documento empleado</th>
+			<th>Cargo empleado</th>
+			<!--<th>Nombre empleado</th>
+			<th>Documento empleado</th>-->
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>

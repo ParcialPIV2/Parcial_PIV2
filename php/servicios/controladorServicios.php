@@ -45,24 +45,24 @@
          $servicios= new Servicios();
          $servicios->consultar($datos['codigo']);
  
-         if($servicios->getEmple_Codi() == null) {
+         if($servicios->getSERVI_CODI() == null) {
              $respuesta = array(
                  'respuesta' => 'no existe'
              );
          }  else {
              $respuesta = array(
-                 'codigocliente' => $servicios->getCLIENTE_CODI(),
-                 'nombrecliente' => $servicios->getCLIENTE_NOM(),
-                 'apellidocliente' => $servicios->getCLIENTE_APELL(),
-                 'documentocliente' => $servicios->getDOCU_CLI(),
-                 'codigoempleado' => $servicios->getEMPLE_CODI(),
-                 'nombreempleado' => $servicios->getEMPLE_NOMB(),
-                 'apellidoempleado' => $servicios->getEMPLE_APELL(),
-                 'documentoempleado' => $servicios->getDOCU_EMPLE(),
-                 'tratamiento' => $servicios->getTRATA_CODI(),
-                 'cargo' =>$servicios->getCARGO_CODI(),
+                 'Codigo servicio' => $servicios->getSERVI_CODI(),
+                 'Codigo cliente' => $servicios->getCLIENTE_CODI(),
+                 //'nombrecliente' => $servicios->getCLIENTE_NOM(),
+                 //'documentocliente' => $servicios->getDOCU_CLI(),
+                 'Tratamiento' => $servicios->getTRATA_CODI(),
+                 //'tratamientovalor' => $servicios->getTRATA_VALOR(),
+                 'Codigo empleado' => $servicios->getEMPLE_CODI(),
+                 'Cargo empleado' =>$servicios->getCARGO_CODI(),
+                 //'nombreempleado' => $servicios->getEMPLE_NOMB(),
+                 //'documentoempleado' => $servicios->getDOCU_EMPLE(),                
                  'respuesta' =>'existe'
-             );
+             );//
          }
          echo json_encode($respuesta);
          break;
