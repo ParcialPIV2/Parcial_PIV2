@@ -24,6 +24,11 @@
 			<th>Apellido</th>
 			<th>Tipo de documento</th>
 			<th>documento</th>
+			<th>Email</th>
+			<th>Celular</th>
+			<th>Direccion</th>
+
+
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>

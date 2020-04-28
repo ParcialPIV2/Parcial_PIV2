@@ -7,6 +7,9 @@
 		public $Cliente_Apell;
 		public $Documento;
 		public $Docu_Codi;
+		public $Cliente_Email;
+		public $Cliente_Cel;
+		public $Cliente_Direc;
 		
 		function __construct() {
 			
@@ -27,15 +30,26 @@
 		public function getDOCUMENTO(){
 			return $this->Documento;
 		}
+
 		
-		public function getDOCU_Codi(){
+		public function getDOCU_CODI(){
 			return $this->Docu_Codi;
 		}
 
+		public function getCLIENTE_EMAIL(){
+			return $this->Cliente_Email;
+		}
+		public function getCLIENTE_DIREC(){
+			return $this->Cliente_Direc;
+		}
+
+		public function getCLIENTE_CEL(){
+			return $this->Cliente_Cel;
+		}
 		public function consultar($Cliente_Codi='') {
 			if($Cliente_Codi != ''):
 				$this->query = "
-				SELECT Cliente_Codi,Cliente_Nom,Cliente_Apell,Cliente_Codi,Documento
+				SELECT Cliente_Codi,Cliente_Nom,Cliente_Apell,Cliente_Codi,Documento,Cliente_Cel, Cliente_Direc,Cliente_Email
 				FROM tb_cliente
 				WHERE Cliente_Codi = '$Cliente_Codi'
 				";
@@ -50,7 +64,7 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Cliente_Codi, Cliente_Nom, Cliente_Apell,Documento, p.Docu_Codi
+			SELECT Cliente_Codi, Cliente_Nom, Cliente_Apell,Documento,Cliente_Cel, Cliente_Direc,Cliente_Email, p.Docu_Codi
 			FROM tb_cliente as m inner join tb_tipo_documento as p
 			ON (m.Docu_Codi = p.Docu_Codi) ORDER BY m.Cliente_Nom
 			";
@@ -60,7 +74,7 @@
 
 		public function listaclientes() {
 			$this->query = "
-			SELECT Cliente_Codi, Cliente_Nom,Cliente_Apell,Documento
+			SELECT Cliente_Codi, Cliente_Nom,Cliente_Apell,Documento,Cliente_Cel, Cliente_Direc,Cliente_Email
 			FROM tb_cliente as d order by Cliente_Nom
 			";
 			$this->obtener_resultados_query();
@@ -74,9 +88,9 @@
 				endforeach;
 				$this->query = "
 				INSERT INTO tb_cliente
-				(Cliente_Codi, Cliente_Nom, Docu_Codi,Cliente_Apell,Documento)
+				(Cliente_Codi, Cliente_Nom, Docu_Codi,Cliente_Apell,Documento,Cliente_Cel, Cliente_Direc,Cliente_Email)
 				VALUES
-				('$Cliente_Codi','$Cliente_Nom', '$Docu_Codi', '$Documento','$Cliente_Apell')
+				('$Cliente_Codi','$Cliente_Nom', '$Docu_Codi', '$Documento','$Cliente_Apell', '$Cliente_Cel', '$Cliente_Direc','$Cliente_Email')
 				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -89,7 +103,7 @@
 			endforeach;
 			$this->query = "
 			UPDATE tb_cliente
-			SET Cliente_Nom='$Cliente_Nom', Cliente_Apell='$Cliente_Apell',Docu_Codi='$Docu_Codi',Documento='$Documento'
+			SET Cliente_Nom='$Cliente_Nom', Cliente_Apell='$Cliente_Apell',Docu_Codi='$Docu_Codi',Documento='$Documento', Cliente_Cel='$Cliente_Cel',Cliente_Direc='$Cliente_Direc',Cliente_Email='$Cliente_Email'
 			WHERE Cliente_Codi = '$Cliente_Codi'
 			";
 			$resultado = $this->ejecutar_query_simple();

@@ -18,7 +18,7 @@
             <div class="panel-heading">Datos</div>
             <div class="panel-body">
     
-                <form class="form-horizontal" role="form"  id="fempleados">
+                <form class="form-horizontal" role="form"  id="fclientes">
 
 
                 <div class="form-group">
@@ -30,9 +30,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Cliente_Nomb">Nombre:</label>
+                        <label class="control-label col-sm-2" for="Cliente_Nom">Nombre:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Cliente_Nomb" name="Cliente_Nomb" placeholder="Ingrese Nombre del empleado"
+                            <input type="text" class="form-control" id="Cliente_Nom" name="Cliente_Nom" placeholder="Ingrese Nombre del empleado"
                             value = "">
                         </div>
                     </div>
@@ -54,6 +54,40 @@
 							</select>	
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Documento">Documento:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Documento" name="Documento" placeholder="Ingrese documento del cliente"
+                            value = "">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Cliente_Email">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Cliente_Email" name="Cliente_Email" placeholder="Ingrese Email del cliente"
+                            value = "">
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Cliente_Cel">Celular:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Cliente_Cel" name="Cliente_Cel" placeholder="Ingrese celular del cliente"
+                            value = "">
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Cliente_Direc">Direccion:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Cliente_Direc" name="Cliente_Direc" placeholder="Ingrese direccion del cliente"
+                            value = "">
+                        </div>
+                    </div>
+
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar empleado" class="btn btn-primary">Actualizar</button>

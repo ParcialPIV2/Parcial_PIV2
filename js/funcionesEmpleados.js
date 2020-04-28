@@ -84,7 +84,7 @@ function empleados(){
     });
 
     $("#contenido").on("click","button.btncerrar2",function(){
-        $("#titulo").html("Listado de Muicipios");
+        $("#titulo").html("Listado de Empleados");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");

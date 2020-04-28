@@ -44,17 +44,20 @@ switch ($_GET['accion']){
         $clientes= new Clientes();
         $clientes->consultar($datos['codigo']);
 
-        if($clientes->getCLIENTES_CODI() == null) {
+        if($clientes->getCLIENTE_CODI() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $clientes->getCLIENTES_CODI(),
-                'clientes' => $clientes->getCLIENTES_NOM(),
-                'apellido' => $clientes->getCLIENTES_APELL(),
+                'codigo' => $clientes->getCLIENTE_CODI(),
+                'clientes' => $clientes->getCLIENTE_NOM(),
+                'apellido' => $clientes->getCLIENTE_APELL(),
                 'documento codigo' =>$clientes->getDOCU_CODI(),
                 'documento' =>$clientes->getDOCUMENTO(),
+                'email' => $clientes->getCLIENTE_EMAIL(),
+                'celular' =>$clientes->getCLIENTE_CEL(),
+                'direccion' =>$clientes->getCLIENTE_DIREC(),
                 'respuesta' =>'existe'
             );
         }

@@ -167,27 +167,29 @@ function clientes(){
         $("#nuevo-editar").load("./php/clientes/editar.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#cliente").removeClass("show");
-        $("#cliente").addClass("hide");
+        $("#clientes").removeClass("show");
+        $("#clientes").addClass("hide");
        $.ajax({
            type:"get",
            url:"./php/clientes/controladorClientes.php", 
            data: {codigo: codigo, accion:'consultar'},
            dataType:"json"
-           }).done(function( empleados ) {
-                if(empleados.respuesta === "no existe"){
+           }).done(function( clientes ) {
+                if(clientes.respuesta === "no existe"){
                     swal({
                       type: 'error',
                       title: 'Oops...',
                       text: 'Municipio no existe!'                         
                     })
                 } else {
-                    $("#Cliente_Codi").val(empleados.codigo);                   
-                    $("#Cliente_Nom").val(empleados.empleados);        
-                    $("#Cliente_Apell").val(empleados.apellido);                   
-                    $("#Docu_Nomb").val(empleados.nomdocu);    
-                    $("#Documento").val(empleados.codigo);                
-                    tipo = empleados.tipo;
+                    $("#Cliente_Codi").val(clientes.codigo);                   
+                    $("#Cliente_Nom").val(clientes.clientes);        
+                    $("#Cliente_Apell").val(clientes.apellido);                      
+                    $("#Documento").val(clientes.documento);    
+                    $("#Cliente_Email").val(clientes.email);        
+                    $("#Cliente_Cel").val(clientes.celular);                      
+                    $("#Cliente_Direc").val(clientes.direccion); 
+                    tipo = clientes.tipo;
                 }
            });
 
@@ -200,10 +202,10 @@ function clientes(){
               $("#Docu_Codi option").remove();
               $.each(resultado.data, function (index, value) { 
                 
-                if(tipo === value.Docu_Nomb){
-                  $("#Docu_Codi").append("<option selected value='" + value.Docu_Codi+ value.Docu_Nomb+"</option>")
-                }else {
-                  $("#Docu_Codi").append("<option value='" + value.Docu_Codi + value.Docu_Nomb+"</option>")
+                if(tipo === value.Docu_Codi){
+                  $("#Docu_Codi").append("<option selected value='" + value.Docu_Codi + "'>" + value. Docu_Nomb+ "</option>")
+               }else {
+                 $("#Docu_Codi").append("<option value='" + value.Docu_Codi + "'>" + value.Docu_Nomb + "</option>")
                 }
               });
            });
@@ -225,6 +227,10 @@ $(document).ready(() => {
             { "data": "Cliente_Nom" },
             { "data": "Cliente_Apell" },
             { "data": "Docu_Codi" },
+            { "data": "Documento" },
+            { "data": "Cliente_Email" },
+            { "data": "Cliente_Cel" },
+            { "data": "Cliente_Direc" },
             { "data": "Cliente_Codi",
                 render: function (data) {
                           return '<a href="#" data-codigo="'+ data + 
