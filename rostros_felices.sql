@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-04-2020 a las 18:43:41
+-- Tiempo de generación: 28-04-2020 a las 21:22:30
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_cargo` (
-  `Cargo_Codi` bigint(20) UNSIGNED NOT NULL,
+  `Cargo_Codi` int(10) UNSIGNED NOT NULL,
   `Tipo_Cargo` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -52,7 +52,7 @@ INSERT INTO `tb_cargo` (`Cargo_Codi`, `Tipo_Cargo`) VALUES
 --
 
 CREATE TABLE `tb_cliente` (
-  `Cliente_Codi` bigint(10) UNSIGNED NOT NULL,
+  `Cliente_Codi` int(10) UNSIGNED NOT NULL,
   `Cliente_Nom` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `Cliente_Apell` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `Docu_Codi` int(10) UNSIGNED NOT NULL,
@@ -78,7 +78,13 @@ INSERT INTO `tb_cliente` (`Cliente_Codi`, `Cliente_Nom`, `Cliente_Apell`, `Docu_
 (128, 'laura', 'tovar', 3, 829839293, 'lau27@gmail.com', 3048348949, 'calle 14B #10-78'),
 (129, 'juan', 'padilla', 4, 2983928392, 'juanpadilla23@hotmail.com', 305832983, 'calle14C #28-106'),
 (130, 'juan', 'rodriguez', 2, 515166161, 'JuanFelipe.Rodriguez1@hotmail.com', 30566218, 'calle 7A#20-118'),
-(131, 'angela ', 'orozco', 1, 1513232112, 'Maria.Orozco1@hotmail.com', 350841626, 'calle 23D #20_105');
+(131, 'angela ', 'orozco', 1, 1513232112, 'Maria.Orozco1@hotmail.com', 350841626, 'calle 23D #20_105'),
+(145, '', 'prueba', 1, 12343434, 'prueba1@gmail.com', 3053801120, 'calle 14#45-12'),
+(146, '', 'prueba', 1, 12343434, 'prueba1@gmail.com', 3053801120, 'calle 14#45-12'),
+(147, '', 'prueba', 1, 12343434, 'prueba1@gmail.com', 3053801120, 'calle 14#45-12'),
+(148, '', 'prueba', 1, 12343434, 'prueba1@gmail.com', 3053801120, 'calle 14#45-12'),
+(162, 'juanchi', 'restrepos', 1, 29043343, 'carlosaux20@gmail.com', 3053801012, 'calle 23C #24-101'),
+(163, 'juancho', 'dos', 1, 29043343, 'carlosaux20@gmail.com', 3053801012, 'calle 23C #24-101');
 
 -- --------------------------------------------------------
 
@@ -87,7 +93,7 @@ INSERT INTO `tb_cliente` (`Cliente_Codi`, `Cliente_Nom`, `Cliente_Apell`, `Docu_
 --
 
 CREATE TABLE `tb_empleados` (
-  `Emple_Codi` bigint(10) UNSIGNED NOT NULL,
+  `Emple_Codi` int(10) UNSIGNED NOT NULL,
   `Emple_Nomb` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL COMMENT 'Nombre del empleado',
   `Emple_Apell` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'apellido del empleado',
   `Documento` int(50) NOT NULL,
@@ -135,6 +141,28 @@ INSERT INTO `tb_productos` (`Produc_Codi`, `Produc_Nomb`, `Produc_Valor`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tb_servicios`
+--
+
+CREATE TABLE `tb_servicios` (
+  `servi_codi` bigint(10) UNSIGNED NOT NULL,
+  `Cliente_Codi` int(10) UNSIGNED NOT NULL,
+  `Emple_Codi` int(10) UNSIGNED NOT NULL,
+  `Cargo_Codi` int(10) UNSIGNED NOT NULL,
+  `Trata_Codi` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tb_servicios`
+--
+
+INSERT INTO `tb_servicios` (`servi_codi`, `Cliente_Codi`, `Emple_Codi`, `Cargo_Codi`, `Trata_Codi`) VALUES
+(7, 123, 12, 1, 4),
+(8, 123, 10, 3, 7);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tb_tipo_documento`
 --
 
@@ -163,8 +191,8 @@ INSERT INTO `tb_tipo_documento` (`Docu_Codi`, `Docu_Nomb`) VALUES
 --
 
 CREATE TABLE `tb_tratamientos` (
-  `Trata_Codi` bigint(20) UNSIGNED NOT NULL,
-  `Trara_Nomb` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `Trata_Codi` int(10) UNSIGNED NOT NULL,
+  `Trata_Nomb` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `Trata_Valor` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -172,7 +200,7 @@ CREATE TABLE `tb_tratamientos` (
 -- Volcado de datos para la tabla `tb_tratamientos`
 --
 
-INSERT INTO `tb_tratamientos` (`Trata_Codi`, `Trara_Nomb`, `Trata_Valor`) VALUES
+INSERT INTO `tb_tratamientos` (`Trata_Codi`, `Trata_Nomb`, `Trata_Valor`) VALUES
 (1, 'Rejuvenecimiento Facial con Laser Fraccionado', 2000000),
 (2, 'Maquillaje permanente', 100000),
 (3, 'Limpieza Facial', 50000),
@@ -210,6 +238,16 @@ ALTER TABLE `tb_productos`
   ADD PRIMARY KEY (`Produc_Codi`);
 
 --
+-- Indices de la tabla `tb_servicios`
+--
+ALTER TABLE `tb_servicios`
+  ADD PRIMARY KEY (`servi_codi`),
+  ADD KEY `pk_clientecodi` (`Cliente_Codi`),
+  ADD KEY `PK_Emplecodi` (`Emple_Codi`),
+  ADD KEY `pk_Tratacodi` (`Trata_Codi`),
+  ADD KEY `pk_Cargocodi` (`Cargo_Codi`);
+
+--
 -- Indices de la tabla `tb_tipo_documento`
 --
 ALTER TABLE `tb_tipo_documento`
@@ -229,25 +267,31 @@ ALTER TABLE `tb_tratamientos`
 -- AUTO_INCREMENT de la tabla `tb_cargo`
 --
 ALTER TABLE `tb_cargo`
-  MODIFY `Cargo_Codi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Cargo_Codi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_cliente`
 --
 ALTER TABLE `tb_cliente`
-  MODIFY `Cliente_Codi` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `Cliente_Codi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_empleados`
 --
 ALTER TABLE `tb_empleados`
-  MODIFY `Emple_Codi` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `Emple_Codi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_productos`
 --
 ALTER TABLE `tb_productos`
   MODIFY `Produc_Codi` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `tb_servicios`
+--
+ALTER TABLE `tb_servicios`
+  MODIFY `servi_codi` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_tipo_documento`
@@ -259,7 +303,20 @@ ALTER TABLE `tb_tipo_documento`
 -- AUTO_INCREMENT de la tabla `tb_tratamientos`
 --
 ALTER TABLE `tb_tratamientos`
-  MODIFY `Trata_Codi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Trata_Codi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `tb_servicios`
+--
+ALTER TABLE `tb_servicios`
+  ADD CONSTRAINT `pk_cargocodi_servi` FOREIGN KEY (`Cargo_Codi`) REFERENCES `tb_cargo` (`Cargo_Codi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pk_clientecodi_servi` FOREIGN KEY (`Cliente_Codi`) REFERENCES `tb_cliente` (`Cliente_Codi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pk_emplecodi_servi` FOREIGN KEY (`Emple_Codi`) REFERENCES `tb_empleados` (`Emple_Codi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pk_tratacodi_servi` FOREIGN KEY (`Trata_Codi`) REFERENCES `tb_tratamientos` (`Trata_Codi`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
