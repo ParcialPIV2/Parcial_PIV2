@@ -47,23 +47,19 @@
                     </div>
 
 
-
-
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Docu_Codi">Tipo de Documento: </label>
+                        <label class="control-label col-sm-2" for="Docu_Codi">codigo documento: </label>
                         <div class="col-sm-10">
                             <select class="form-control" id="Docu_Codi" name="Docu_Codi">
                          
 							</select>	
                         </div>
                     </div>
-
-                    
                     
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Documento">documento:</label>
+                        <label class="control-label col-sm-2" for="Documento">Documento:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Documento" name="Documento" placeholder="Ingrese Documento del cliente"
+                            <input type="text" class="form-control" id="Documento" name="Documento" placeholder="Ingrese documento del cliente"
                             value = "">
                         </div>
                     </div>

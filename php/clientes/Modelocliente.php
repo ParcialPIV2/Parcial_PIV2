@@ -49,7 +49,7 @@
 		public function consultar($Cliente_Codi='') {
 			if($Cliente_Codi != ''):
 				$this->query = "
-				SELECT Cliente_Codi,Cliente_Nom,Cliente_Apell,Cliente_Codi,Documento,Cliente_Cel, Cliente_Direc,Cliente_Email
+				SELECT Cliente_Codi,Cliente_Nom,Cliente_Apell,Documento,Cliente_Cel, Cliente_Direc,Cliente_Email,Cliente_Codi
 				FROM tb_cliente
 				WHERE Cliente_Codi = '$Cliente_Codi'
 				";
@@ -90,7 +90,7 @@
 				INSERT INTO tb_cliente
 				(Cliente_Codi, Cliente_Nom, Docu_Codi,Cliente_Apell,Documento,Cliente_Cel, Cliente_Direc,Cliente_Email)
 				VALUES
-				('$Cliente_Codi','$Cliente_Nom', '$Docu_Codi', '$Documento','$Cliente_Apell', '$Cliente_Cel', '$Cliente_Direc','$Cliente_Email')
+				('$Cliente_Codi','$Cliente_Nom', '$Docu_Codi','$Cliente_Apell', '$Documento', '$Cliente_Cel', '$Cliente_Direc','$Cliente_Email')
 				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
