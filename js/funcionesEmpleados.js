@@ -38,7 +38,7 @@ function empleados(){
 
         swal({
               title: '¿Está seguro?',
-              text: "¿Realmente desea borrar el municipio con codigo : " + codigo + " ?",
+              text: "¿Realmente desea borrar el cargo con codigo : " + codigo + " ?",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -58,7 +58,7 @@ function empleados(){
                         if(resultado.respuesta == 'correcto'){
                             swal(
                                 'Borrado!',
-                                'El municipio con codigo : ' + codigo + ' fue borrado',
+                                'El cargo con codigo : ' + codigo + ' fue borrado',
                                 'success'
                             )     
                             dt.ajax.reload();                            
@@ -124,8 +124,8 @@ function empleados(){
     $("#contenido").on("click","button#grabar",function(){
         /*var comu_codi = $("#comu_codi").attr("value");
         var comu_nomb = $("#comu_nomb").attr("value");
-        var muni_codi = $("#muni_codi").attr("value");
-        var datos = "comu_codi="+comu_codi+"&comu_nomb="+comu_nomb+"&muni_codi="+muni_codi;*/
+        var Cargo_Codi = $("Cargo_Codi").attr("value");
+        var datos = "comu_codi="+comu_codi+"&comu_nomb="+comu_nomb+"&Cargo_Codi="+Cargo_Codi;*/
       
       var datos=$("#fempleados").serialize();
 
@@ -142,7 +142,7 @@ function empleados(){
                     'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado municipios");
+                $("#titulo").html("Listado cargos");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
@@ -159,53 +159,55 @@ function empleados(){
     });
 
 
-    $("#contenido").on("click","a.editar",function(){     
-       $("#titulo").html("Editar Municipio");
-       //Recupera datos del fromulario
-       var codigo = $(this).data("codigo");
-  
-        $("#nuevo-editar").load("./php/empleados/editar.php");
-        $("#nuevo-editar").removeClass("hide");
-        $("#nuevo-editar").addClass("show");
-        $("#empleados").removeClass("show");
-        $("#empleados").addClass("hide");
-       $.ajax({
-           type:"get",
-           url:"./php/empleados/controladorEmpleados.php", 
-           data: {codigo: codigo, accion:'consultar'},
-           dataType:"json"
-           }).done(function( empleados ) {
-                if(empleados.respuesta === "no existe"){
-                    swal({
-                      type: 'error',
-                      title: 'Oops...',
-                      text: 'Municipio no existe!'                         
-                    })
-                } else {
-                    $("#Emple_Codi").val(empleados.codigo);                   
-                    $("#Emple_Nomb").val(empleados.empleados);                   
-                    cargo = empleados.cargo;
-                }
-           });
+    $("#contenido").on("click","a.editar",function(){
+      $("#titulo").html("Editar Empleado");
+      //Recupera datos del fromulario
+      var codigo = $(this).data("codigo");
+      var cargos;
+       $("#nuevo-editar").load("./php/empleados/editar.php");
+       $("#nuevo-editar").removeClass("hide");
+       $("#nuevo-editar").addClass("show");
+       $("#empleados").removeClass("show");
+       $("#empleados").addClass("hide");
+      $.ajax({
+          type:"get",
+          url:"./php/empleados/controladorEmpleados.php",
+          data: {codigo: codigo, accion:'consultar'},
+          dataType:"json"
+          }).done(function( empleados ) {        
+               if(empleados.respuesta === "no existe"){
+                   swal({
+                     type: 'error',
+                     title: 'Oops...',
+                     text: 'empleado no existe!!!!!'                         
+                   })
+               } else {
+                   $("#Emple_Codi").val(empleados.codigo);                   
+                   $("#Emple_Nomb").val(empleados.empleados);
+                   $("#Emple_Apell").val(empleados.apellido);                   
+                   $("#Documento").val(empleados.documento);
+                   cargos = empleados.cargos;
+               }
+          });
 
-           $.ajax({
-             type:"get",
-             url:"./php/cargo/controladorcargo.php",
-             data: {accion:'listar'},
-             dataType:"json"
-           }).done(function( resultado ) {                     
-              $("#Cargo_Codi option").remove();
-              $.each(resultado.data, function (index, value) { 
-                
-                if(cargo === value.Tipo_Cargo){
-                  $("#Cargo_Codi").append("<option selected value='" + value.Cargo_Codi+ value.Tipo_Cargo+"</option>")
-                }else {
-                  $("#Cargo_Codi").append("<option value='" + value.Cargo_Codi + value.Tipo_Cargo+"</option>")
-                }
-              });
-           });
-
-       })
+          $.ajax({
+            type:"get",
+            url:"./php/cargo/controladorcargo.php",
+            data: {accion:'listar'},
+            dataType:"json"
+          }).done(function( resultado ) {                     
+             $("#Cargo_Codi option").remove();
+             $.each(resultado.data, function (index, value) { 
+               
+               if(cargos === value.Cargo_Codi){
+                 $("#Cargo_Codi").append("<option selected value='" + value.Cargo_Codi + "'>" + value.Tipo_Cargo + "</option>")
+               }else {
+                 $("#Cargo_Codi").append("<option value='" + value.Cargo_Codi + "'>" + value.Tipo_Cargo + "</option>")
+               }
+             });
+          });    
+           
+      })
 }
 
 $(document).ready(() => {

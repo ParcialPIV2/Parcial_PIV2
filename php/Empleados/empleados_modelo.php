@@ -36,7 +36,7 @@
 		public function consultar($Emple_Codi='') {
 			if($Emple_Codi != ''):
 				$this->query = "
-				SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Documento,Emple_Codi
+				SELECT Emple_Codi,Emple_Nomb,Emple_Apell,Documento,Emple_Codi,Cargo_Codi
 				FROM tb_empleados
 				WHERE Emple_Codi = '$Emple_Codi'
 				";
@@ -90,7 +90,9 @@
 			endforeach;
 			$this->query = "
 			UPDATE tb_empleados
-			SET Emple_Nomb='$Emple_Nomb', Emple_Apell='$Emple_Apell', Documento='$Documento'
+			SET Emple_Nomb='$Emple_Nomb',
+			Emple_Apell='$Emple_Apell',
+			Documento='$Documento',
             Cargo_Codi='$Cargo_Codi'
 			WHERE Emple_Codi = '$Emple_Codi'
 			";

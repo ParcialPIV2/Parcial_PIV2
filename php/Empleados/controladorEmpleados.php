@@ -45,7 +45,7 @@
          $empleados= new Empleados();
          $empleados->consultar($datos['codigo']);
  
-         if($empleados->getempleados_codi() == null) {
+         if($empleados->getEmple_Codi() == null) {
              $respuesta = array(
                  'respuesta' => 'no existe'
              );

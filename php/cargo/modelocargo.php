@@ -36,7 +36,7 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Cargo_Codi, Tipo_Cargo
+			SELECT Cargo_Codi,Tipo_Cargo
 			FROM tb_cargo ORDER BY Cargo_Codi
 			";
 			$this->obtener_resultados_query();

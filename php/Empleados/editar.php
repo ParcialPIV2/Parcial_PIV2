@@ -1,6 +1,6 @@
 <div id="seccion-pais">
     <div class="box-header">
-    	<i class="fa fa-building" aria-hidden="true">Gestion de pais</i>
+    	<i class="fa fa-building" aria-hidden="true">Gestion de Empleado</i>
         
         <!-- tools box -->
         <div class="pull-right box-tools">
@@ -32,20 +32,35 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="Emple_Nomb">Nombre:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Emple_Nomb" name="Emple_Nomb" placeholder="Ingrese Nombre del pais"
+                            <input type="text" class="form-control" id="Emple_Nomb" name="Emple_Nomb" placeholder="Ingrese el nombre del empleado"
+                            value = "">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Emple_Apell">Apellido:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Emple_Apell" name="Emple_Apell" placeholder="Ingrese el apellido del empleado"
+                            value = "">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Documento">Documento:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Documento" name="Documento" placeholder="Ingrese el documento del empleado"
                             value = "">
                         </div>
                     </div>
 					
 					
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Cargo_Codi">codigo : </label>
+                        <label class="control-label col-sm-2" for="Cargo_Codi">Cargo:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="Cargo_Codi" name="Cargo_Codi">
-                         
-							</select>	
+                            <select class="form-control" id="Cargo_Codi" name="Cargo_Codi"></select>
                         </div>
                     </div>
+
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar empleado" class="btn btn-primary">Actualizar</button>
