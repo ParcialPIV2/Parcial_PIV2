@@ -3,7 +3,7 @@
 	require_once('../modeloAbstractoDB.php');
 	class Clientes extends ModeloAbstractoDB {
 		public $Cliente_Codi;
-		public $Cliente_Nomb;
+		public $Cliente_Nom;
 		public $Cliente_Apell;
 		public $Docu_Codi;
 		
@@ -15,8 +15,8 @@
 			return $this->Cliente_Codi;
 		}
 
-		public function getCLIENTE_NOMB(){
-			return $this->Cliente_Nomb;
+		public function getCLIENTE_NOM(){
+			return $this->Cliente_Nom;
 		}
 
 		public function getCLIENTE_APELL(){
@@ -30,7 +30,7 @@
 		public function consultar($Cliente_Codi='') {
 			if($Cliente_Codi != ''):
 				$this->query = "
-				SELECT Cliente_Codi,Cliente_Nomb,Cliente_Apell,Cliente_Codi
+				SELECT Cliente_Codi,Cliente_Nom,Cliente_Apell,Cliente_Codi
 				FROM tb_cliente
 				WHERE Cliente_Codi = '$Cliente_Codi'
 				";
@@ -45,9 +45,9 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT Cliente_Codi,Cliente_Nomb,Cliente_Apell,p.Docu_Codi
+			SELECT Cliente_Codi, Cliente_Nom, Cliente_Apell, p.Docu_Codi 
 			FROM tb_cliente as m inner join tb_tipo_documento as p
-			ON (m.Docu_Codi = p.Docu_Codi) ORDER BY m.Cliente_Nomb
+			ON (m.Docu_Codi = p.Docu_Codi) ORDER BY m.Cliente_Nom
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
@@ -55,8 +55,8 @@
 
 		public function listaempleados() {
 			$this->query = "
-			SELECT Cliente_Codi, Cliente_Nomb,Cliente_Apell,
-			FROM tb_cliente as d order by Cliente_Nomb
+			SELECT Cliente_Codi, Cliente_Nom,Cliente_Apell,
+			FROM tb_cliente as d order by Cliente_Nom
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
@@ -69,9 +69,9 @@
 				endforeach;
 				$this->query = "
 				INSERT INTO tb_cliente
-				(Cliente_Codi, Cliente_Nomb, Docu_Codi,Cliente_Apell,)
+				(Cliente_Codi, Cliente_Nom, Docu_Codi,Cliente_Apell,)
 				VALUES
-				('$Cliente_Codi','$Cliente_Nomb', '$Docu_Codi','$Cliente_Apell')
+				('$Cliente_Codi','$Cliente_Nom', '$Docu_Codi','$Cliente_Apell')
 				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -84,7 +84,7 @@
 			endforeach;
 			$this->query = "
 			UPDATE tb_cliente
-			SET Cliente_Nomb='$Cliente_Nomb', Cliente_Apell='$Cliente_Apell',Docu_Codi='$Docu_Codi'
+			SET Cliente_Nom='$Cliente_Nom', Cliente_Apell='$Cliente_Apell',Docu_Codi='$Docu_Codi'
 			WHERE Cliente_Codi = '$Cliente_Codi'
 			";
 			$resultado = $this->ejecutar_query_simple();

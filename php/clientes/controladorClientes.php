@@ -51,7 +51,7 @@ switch ($_GET['accion']){
         }  else {
             $respuesta = array(
                 'codigo' => $clientes->getCLIENTES_CODI(),
-                'clientes' => $clientes->getCLIENTES_NOMB(),
+                'clientes' => $clientes->getCLIENTES_NOM(),
                 'apellido' => $clientes->getCLIENTES_APELL(),
                 'documentocodigo' =>$clientes->getDOCU_CODI(),
                 'respuesta' =>'existe'

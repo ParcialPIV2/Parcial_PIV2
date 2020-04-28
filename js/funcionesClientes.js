@@ -183,7 +183,7 @@ function clientes(){
                     })
                 } else {
                     $("#Cliente_Codi").val(empleados.codigo);                   
-                    $("#Cliente_Nomb").val(empleados.empleados);                   
+                    $("#Cliente_Nom").val(empleados.empleados);                   
                     tipo = empleados.tipo;
                 }
            });
@@ -219,7 +219,7 @@ $(document).ready(() => {
         "ajax": "php/clientes/controladorClientes.php?accion=listar",
         "columns": [
             { "data": "Cliente_Codi"} ,
-            { "data": "Cliente_Nomb" },
+            { "data": "Cliente_Nom" },
             { "data": "Cliente_Apell" },
             { "data": "Docu_Codi" },
             { "data": "Cliente_Codi",
